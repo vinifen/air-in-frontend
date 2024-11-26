@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { AuthenticationComponent } from './components/authentication/authentication.component';
+import { HomeComponent } from './components/pages/home/home.component';
+import { AuthComponent } from './components/pages/auth/auth.component';
 
 export const routes: Routes = [
   {
@@ -9,6 +9,6 @@ export const routes: Routes = [
   },
   {
     path: 'authentication',
-    component: AuthenticationComponent
+    component: AuthComponent
   },
 ];
