@@ -5,9 +5,11 @@
         <h1>Clima em {{ weatherData.name }}</h1>
         <p>Temperatura: {{ weatherData.main.temp }}°C</p>
         <p>Descrição: {{ weatherData.weather[0].description }}</p>
-        <p>Humidade: {{ weatherData.main.humidity }}%</p>
+        <p>Umidade: {{ weatherData.main.humidity }}%</p>
+        <p>Min temp: {{ weatherData.main.temp_min }}%</p>
+        <p>Max temp: {{ weatherData.main.feels_like }}%</p>
+        <p>Principal: {{ weatherData.weather[0].main }}</p>
       </div>
-      
       <div *ngIf="!weatherData">
         <p>Carregando dados...</p>
       </div>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom} from 'rxjs';
+import { Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +12,14 @@ export class ApiWeatherService {
 
   constructor(private http: HttpClient) {}
 
-  async getWeather(city: string){
+  getWeather(city: string): Observable<any>{
     const data = this.http.get(`${this.apiURL}data/2.5/weather?q=${city}&appid=${this.apiKey}&units=metric`)
-    const response = await firstValueFrom(data);
-    this.saveWeatherData(response);
-    return response;
+    
+    this.saveWeatherData(data);
+    return data;
   }
 
-  saveWeatherData(data: any) {
-    firstValueFrom(this.http.post('http://localhost:3000/weather', data)); 
+  saveWeatherData(data: any): Observable<any> {
+    return this.http.post('http://localhost:3000/weather', data); 
   }
 }
