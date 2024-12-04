@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './main-home.component.html',
-  styleUrls: ['./main-home.component.css'] // Corrigido: styleUrl -> styleUrls
+  styleUrls: ['./main-home.component.css'] 
 })
 export class MainHomeComponent implements OnInit {
 
@@ -15,11 +15,14 @@ export class MainHomeComponent implements OnInit {
 
   constructor(private apiWeatherService: ApiWeatherService) {}
 
-  async ngOnInit(): Promise<any> {
-    try {
-      this.weatherData = await this.apiWeatherService.getWeather('Curitiba')
-    } catch (error) {
-      console.error("error", error);
-    }
+  ngOnInit(){
+    this.apiWeatherService.getWeather('Guarapuava').subscribe({
+      next: (data) => {
+        this.weatherData = data;
+      },
+      error: (err) => {
+        console.error("Error on get api", err);
+      }
+    });
   }
 }
