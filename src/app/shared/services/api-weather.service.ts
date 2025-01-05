@@ -8,14 +8,13 @@ import { take } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiWeatherService {
-  apiURL: string = environment.weatherApiURL;
-  apiKey: string = environment.weatherApiKey;
-
+  apiURL: string = environment.backendURL;
+  
   constructor(private http: HttpClient) {}
 
-  getWeather(city: string): Observable<any>{
-    const data = this.http.get(`${this.apiURL}data/2.5/weather?q=${city}&appid=${this.apiKey}&units=metric`).pipe(take(1));
-    
+  getWeather(cities: string[]): Observable<any>{
+    const data = this.http.post(`${this.apiURL}cities/weather/unlogged`, cities).pipe(take(1));
+    console.log(data);
     this.saveWeatherData(data);
     return data;
   }

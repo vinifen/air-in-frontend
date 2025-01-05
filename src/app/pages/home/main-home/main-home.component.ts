@@ -16,9 +16,10 @@ export class MainHomeComponent implements OnInit {
   constructor(private apiWeatherService: ApiWeatherService) {}
 
   ngOnInit(){
-    this.apiWeatherService.getWeather('Guarapuava').subscribe({
-      next: (data) => {
-        this.weatherData = data;
+    this.apiWeatherService.getWeather(['Guarapuava', 'new york']).subscribe({
+      next: (response) => {
+        console.log(response.data[0].content);
+        this.weatherData = response.data[0].content;
       },
       error: (err) => {
         console.error("Error on get api", err);
