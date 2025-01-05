@@ -19,12 +19,17 @@ export class AppComponent implements OnInit {
     private requestNewSessionToken: RequestSessionTokenService,
     private isLogged: IsLoggedService
   ){}
-  
+   
+  //transferir essa logica para .guard
+
   ngOnInit(): void {  
     console.log("asdfasdfasdfasdfasd");
-    this.userService.postUsers("adasdf", 'asdf').subscribe({
+    this.userService.postUsers("adaassdffdfsdf", 'asdf').subscribe({
       next: (response) =>{
-        console.log(response);
+        console.log(response.data + "asdfase4afdsfasd");
+      },
+      error: (error) => {
+        console.log(error.error.data.message)
       }
     });
 

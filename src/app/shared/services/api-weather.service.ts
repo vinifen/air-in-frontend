@@ -15,11 +15,6 @@ export class ApiWeatherService {
   getWeather(cities: string[]): Observable<any>{
     const data = this.http.post(`${this.apiURL}cities/weather/unlogged`, cities).pipe(take(1));
     console.log(data);
-    this.saveWeatherData(data);
     return data;
-  }
-
-  saveWeatherData(data: any): Observable<any> {
-    return this.http.post('http://localhost:3000/weather', data).pipe(take(1)); 
   }
 }
