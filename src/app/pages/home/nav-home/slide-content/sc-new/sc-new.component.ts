@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-sc-new',
