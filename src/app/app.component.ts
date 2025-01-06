@@ -16,47 +16,20 @@ export class AppComponent implements OnInit {
 
   constructor(
     private userService: UsersService, 
-    private requestNewSessionToken: RequestSessionTokenService,
-    private isLogged: IsLoggedService
   ){}
-   
-  //transferir essa logica para .guard
 
   ngOnInit(): void {  
-    console.log("asdfasdfasdfasdfasd");
-    this.userService.postUsers("adaassdffdfsdf", 'asdf').subscribe({
-      next: (response) =>{
-        console.log(response.data + "asdfase4afdsfasd");
-      },
-      error: (error) => {
-        console.log(error.error.data.message)
-      }
-    });
+    console.log("TESTESTSETSETSET");
 
-    this.userService.getUsers().subscribe({
-      next: (response) => {
-        console.log(response.data);
-        this.result = response.data;
-
-        if(this.result.hasToken == true && this.result.sessionTokenStatus == true){
-          this.requestNewSessionToken.requestSessionToken().subscribe({
-            next: (response) => {
-              console.log(response.data);
-              if(response.data.status == false){
-                return this.isLogged.setIsLogged(false);
-              }
-              return this.isLogged.setIsLogged(true);
-            }
-          })
-        }
-      },
-      error: (err) => {
-        console.error("Error on get api", err);
-      }
-    });
-   
-
+    // this.userService.postUsers("carlos", "carlos").subscribe({
+    //   next: (value: any) => {console.log(value)}
+    // });
     
+    this.userService.getUser().subscribe({
+      next: (value) => {
+        console.log(value , "asdfasd");
+      }
+    })
   }
 
   

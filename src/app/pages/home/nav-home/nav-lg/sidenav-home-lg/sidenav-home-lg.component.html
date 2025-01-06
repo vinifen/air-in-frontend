@@ -7,6 +7,7 @@
     </div>
 
     <button (click)="toggleSlide('account')" 
+            routerLink="/authentication"
             [ngClass]="{'bg-white shadow-sm': activeSlide === 'account', 'bg-transparent': activeSlide !== 'account'}"
             class="h-14 w-14 rounded-xl">
       <i class="bi bi-person-fill text-primary text-3xl"></i>

@@ -3,11 +3,13 @@ import { SlideSidenavComponent } from '../slide-sidenav/slide-sidenav.component'
 import { SiteTitleComponent } from '../../../../../shared/site-title/site-title.component';
 import { CommonModule } from '@angular/common';
 import { ActiveSlideNavService } from '../../active-slide-nav.service';
+import { RouterLink } from '@angular/router';
+import { IsLoggedService } from '../../../../../shared/services/is-logged.service';
 
 @Component({
   selector: 'app-sidenav-home-lg',
   standalone: true,
-  imports: [SlideSidenavComponent, SiteTitleComponent, CommonModule],
+  imports: [RouterLink, SlideSidenavComponent, SiteTitleComponent, CommonModule],
   templateUrl: './sidenav-home-lg.component.html',
   styleUrl: './sidenav-home-lg.component.css'
 })
@@ -17,7 +19,10 @@ export class SidenavHomeLgComponent implements OnInit {
   activeSlide: string | null = null;
   
 
-  constructor(private activeSlideService$: ActiveSlideNavService){}
+  constructor(
+    private activeSlideService$: ActiveSlideNavService,
+    private isLogged: IsLoggedService
+  ){}
 
   ngOnInit(): void {
     this.activeSlideService$.getActiveSlide().subscribe((content) =>{
@@ -27,6 +32,10 @@ export class SidenavHomeLgComponent implements OnInit {
   }
 
   toggleSlide(newContent: string): void {
-    this.activeSlideService$.setActiveSlide(this.activeSlide === newContent ? null : newContent);
+    this.isLogged.getIsLogged().subscribe({next: (value) => {
+      if(value){
+        this.activeSlideService$.setActiveSlide(this.activeSlide === newContent ? null : newContent);
+      }
+    }});
   }
 }
