@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UsersService } from './shared/services/users.service';
 import { RequestSessionTokenService } from './shared/services/request-session-token.service';
-import { IsLoggedService } from './shared/services/is-logged.service';
+import { AuthService } from './shared/services/auth.service';
+import { firstValueFrom } from 'rxjs';
+import { UserSessionHandlerService } from './shared/services/user-session-handler.service';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -15,21 +18,40 @@ export class AppComponent implements OnInit {
   private result: any;
 
   constructor(
-    private userService: UsersService, 
+    private handleUserSession: UserSessionHandlerService,
+    private userService: UsersService,
+    private authService: AuthService
   ){}
 
-  ngOnInit(): void {  
+  ngOnInit() {
     console.log("TESTESTSETSETSET");
 
-    // this.userService.postUsers("carlos", "carlos").subscribe({
+    // this.userService.postUsers("caddrsssgfflossss", "carlos").subscribe({
     //   next: (value: any) => {console.log(value)}
     // });
-    
-    this.userService.getUser().subscribe({
-      next: (value) => {
-        console.log(value , "asdfasd");
-      }
-    })
+
+    // this.userService.requestUser().subscribe({
+
+    //   next: (data: {status: boolean, data: any}) => {
+    //     this.authService.validateSession(data);
+    //     console.log(data, "DATA");
+    //     this.isLogged.getIsLogged().subscribe({
+
+    //       next: async (value) => {
+    //         if (value === true && data.data.content) {
+    //           this.userService.setUserData(data.data.content);
+    //         } this.userService.getUserData().subscribe({next: (value) =>{console.log(value, "asdfa userdata")}})
+    //       }
+    //     });
+    //   },
+    //   error: (err) => {
+    //     console.error("Error fetching user data:", err);
+    //   }
+    // });
+    //this.handleUserSession.postUserSession("cssarddlos", "varsco");
+    this.handleUserSession.initializeUserSession();
+    console.log(this.userService.getUserData().subscribe({next: (value) => {console.log(value, "USER VALUE")}}))
+    console.log(this.authService.getIsLogged().subscribe({next: (value) => {console.log(value, "ISLOGGED VALUE")}}))
   }
 
   

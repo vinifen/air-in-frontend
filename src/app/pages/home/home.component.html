@@ -1,7 +1,10 @@
 <div 
-  class="grid h-screen w-screen bg-cover bg-center grid-rows-[auto_1fr_auto] lg:grid lg:grid-cols-[auto_1fr] lg:items-center"
+  class="bg-cover bg-center w-full h-full flex flex-col justify-center items-center"
   style="background-image: url('/background-air-in.png');"
 >
+  <div 
+  class="grid w-full md:w-14/15 h-full grid-rows-[auto_1fr_auto] lg:grid lg:grid-cols-[auto_1fr] lg:items-center"
+  >
     <app-sidenav-home-lg 
       *ngIf="isLgScreen" 
       class="lg:h-screen lg:ml-4 lg:col-start-1"
