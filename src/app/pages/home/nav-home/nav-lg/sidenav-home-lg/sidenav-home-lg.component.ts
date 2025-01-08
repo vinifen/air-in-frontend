@@ -4,7 +4,7 @@ import { SiteTitleComponent } from '../../../../../shared/site-title/site-title.
 import { CommonModule } from '@angular/common';
 import { ActiveSlideNavService } from '../../active-slide-nav.service';
 import { RouterLink } from '@angular/router';
-import { IsLoggedService } from '../../../../../shared/services/is-logged.service';
+import { AuthService } from '../../../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-sidenav-home-lg',
@@ -21,7 +21,7 @@ export class SidenavHomeLgComponent implements OnInit {
 
   constructor(
     private activeSlideService$: ActiveSlideNavService,
-    private isLogged: IsLoggedService
+    private authService: AuthService
   ){}
 
   ngOnInit(): void {
@@ -32,10 +32,12 @@ export class SidenavHomeLgComponent implements OnInit {
   }
 
   toggleSlide(newContent: string): void {
-    this.isLogged.getIsLogged().subscribe({next: (value) => {
-      if(value){
-        this.activeSlideService$.setActiveSlide(this.activeSlide === newContent ? null : newContent);
+    this.authService.getIsLogged().subscribe({next: (value: boolean) => {
+      console.log(value);
+      if(value == false && newContent === "account"){
+        return
       }
+      this.activeSlideService$.setActiveSlide(this.activeSlide === newContent ? null : newContent);
     }});
   }
 }

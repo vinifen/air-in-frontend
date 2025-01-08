@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RequestSessionTokenService } from './request-session-token.service';
+import { RequestSessionTokenService } from '../request-session-token.service';
 
 describe('RequestSessionTokenService', () => {
   let service: RequestSessionTokenService;

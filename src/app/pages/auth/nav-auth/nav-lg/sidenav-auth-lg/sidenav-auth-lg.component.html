@@ -1,0 +1,43 @@
+<nav class="h-screen flex items-center">
+  <div class="bg-white-50 h-15/16 grid grid-rows-4 justify-items-center items-start w-28" 
+    [ngClass]="{'rounded-2xl': activeContent !== 'test-account', 'rounded-tr-none rounded-br-none rounded-tl-2xl rounded-bl-2xl': activeContent === 'test-account'}"
+  >
+
+  <div class="w-full h-full flex items-center justify-center">
+    <app-site-title></app-site-title>
+  </div>
+    
+    <button routerLink="/"
+            class="h-14 w-14 rounded-xl">
+      <i class="bi bi-arrow-left text-primary text-2xl"></i>
+    </button>
+
+    <button (click)="toggleContent('login')" 
+            class="w-14 rounded-xl"
+            *ngIf="activeContent === 'create-account'"
+            >
+            <i class="bi bi-person-check-fill text-primary text-3xl"></i>
+            <p class="text-xs">Login</p>
+    </button>
+
+    <button (click)="toggleContent('create-account')" 
+      class="w-14 rounded-xl"
+      *ngIf="activeContent !== 'create-account'"
+      >
+      <i class="bi bi-person-plus-fill text-primary text-3xl"></i>
+      <p class="text-xs">Create Account</p>
+    </button>
+
+    <button (click)="toggleContent('test-account')" 
+      [ngClass]="{'bg-white shadow-sm': activeContent === 'test-account', 'bg-transparent': activeContent !== 'test-account'}"
+      class=" w-14 rounded-xl">
+      <i class="bi bi-person-workspace text-primary text-2xl"></i>
+      <p class="text-xs">Test Account</p>
+    </button>
+
+  </div>
+
+  <app-slide-auth-lg *ngIf="activeContent === 'test-account'"></app-slide-auth-lg>
+
+</nav>
+
