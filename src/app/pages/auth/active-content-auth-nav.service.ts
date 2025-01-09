@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ActiveContentAuthNavService {
-  private activeContent$ = new BehaviorSubject<string | null>('');
+  private activeContent$ = new BehaviorSubject<string | null>('login');
 
   setActiveContent(content: string | null){
     this.activeContent$.next(content);

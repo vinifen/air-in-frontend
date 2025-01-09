@@ -21,6 +21,7 @@ export class UsersService {
   }
 
   setUserData(newUserData: {username: string}){
+    console.log(newUserData, "NEW USER DATA")
     this.userData$.next({username: newUserData.username});
   }
 

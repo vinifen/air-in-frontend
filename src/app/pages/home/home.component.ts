@@ -5,6 +5,7 @@ import { NavTopHomeSmComponent } from './nav-home/nav-sm/nav-top-home-sm/nav-top
 import { SidenavHomeLgComponent } from './nav-home/nav-lg/sidenav-home-lg/sidenav-home-lg.component';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
+import { ActiveSlideNavService } from './nav-home/active-slide-nav.service';
 
 @Component({
   selector: 'app-home',
@@ -16,9 +17,10 @@ import { CommonModule } from '@angular/common';
 export class HomeComponent implements OnInit{
   isLgScreen: boolean = false;
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver, private activeSlide: ActiveSlideNavService) {}
 
   ngOnInit(): void {
+    this.activeSlide.setActiveSlide('');
     this.breakpointObserver.observe(['(min-width: 1024px)']).subscribe((result) => {
       this.isLgScreen = result.matches;
     });
