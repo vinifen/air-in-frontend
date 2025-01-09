@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MainAuthComponent } from './main-auth/main-auth.component';
-import { SidenavAuthLgComponent } from './nav-auth/nav-lg/sidenav-auth-lg/sidenav-auth-lg.component';
+import { SidenavAuthLgComponent } from './nav-auth/sidenav-auth-lg/sidenav-auth-lg.component';
 import { NavTopAuthSmComponent } from './nav-auth/nav-sm/nav-top-auth-sm/nav-top-auth-sm.component';
 import { NavBottomAuthSmComponent } from './nav-auth/nav-sm/nav-bottom-auth-sm/nav-bottom-auth-sm.component';
 import { BreakpointObserver } from '@angular/cdk/layout';

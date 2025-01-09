@@ -32,12 +32,12 @@ export class AuthService {
 
   async handleInvalidSession(response: any) {
     this.setIsLogged(false);
-    console.log(response, "asdfasdfasdf");
+    console.log(response, "handle invalid session");
     if (response.data.hasRt == true) {
       const result = await this.tryNewSession();
       
       if (result === true) {
-        console.log("AQUI")
+        console.log("handle invalid session AQUI")
         return {status: true, newSession: true}
       }
     }

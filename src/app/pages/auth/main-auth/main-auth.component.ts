@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ActiveContentAuthNavService } from '../nav-auth/active-content-auth-nav.service';
+import { ActiveContentAuthNavService } from '../active-content-auth-nav.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -14,10 +14,10 @@ import { CommonModule } from '@angular/common';
 export class MainAuthComponent implements OnInit {
   activeContent: string | null = null;
 
-  constructor(private activeContentS$: ActiveContentAuthNavService){}
+  constructor(private activeContentService$: ActiveContentAuthNavService){}
 
   ngOnInit(): void {
-    this.activeContentS$.getActiveContent().subscribe((content) =>{
+    this.activeContentService$.getActiveContent().subscribe((content) =>{
       this.activeContent = content;
     })
   }
