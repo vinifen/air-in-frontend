@@ -27,12 +27,30 @@ export class RegisterComponent {
   ) {}
 
   validateForm(): void {
+    const usernameRegex = /^[A-Za-z0-9]{2,30}$/;
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{4,90}$/;
     this.isFormValid = !!this.inputUsername && !!this.inputPassword && !!this.inputPasswordConfirm && this.inputPassword === this.inputPasswordConfirm;
     
     this.errorMessage = !this.isFormValid && this.inputPassword !== this.inputPasswordConfirm ? 'Passwords do not match.' : '';
 
+    if (!usernameRegex.test(this.inputUsername)) {
+      this.errorMessage = "Username must be between 2 and 30 characters and contain only letters and numbers.";
+    }
+
+    else if (!passwordRegex.test(this.inputPassword) || !passwordRegex.test(this.inputPasswordConfirm)) {
+      this.errorMessage = "Password must be between 4 and 90 characters, with at least one uppercase letter and one number.";
+    }
+    
+    else {
+      this.errorMessage = null;
+    }
+
+
+    this.isFormValid = !this.errorMessage;
+
     console.log(this.isFormValid);
   }
+  
   async onSubmit() {
   
     if (!this.inputUsername || !this.inputPassword || !this.inputPasswordConfirm) {
@@ -51,14 +69,16 @@ export class RegisterComponent {
   
     try {
       const data = await this.handleUserSession.registerUserSession(this.inputUsername, this.inputPassword);
-      if (data?.data?.message) {
-        this.successMessage = data.data.message; 
+      if (data.status) {
+        this.successMessage = data.message; 
         setTimeout(() => {
           this.router.navigate(['']);
         }, 2000);
+      }else{
+        this.errorMessage = data.message
       }
-    } catch (err) {
-      this.errorMessage = 'Registration failed. Please try again.';
+    } catch (err: any) {
+      this.errorMessage = err.error.data.message;
       this.successMessage = null;
     }
   

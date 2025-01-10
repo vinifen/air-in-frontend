@@ -30,7 +30,14 @@ export class AuthService {
     }
   }
 
-  async handleInvalidSession(response: any) {
+  requestLogin(username: string, password: string){
+    const data = this.http.post<{status: boolean, data: any}>(
+      `${this.apiURL}auth/login`, {username, password}, {withCredentials: true }
+    ).pipe(take(1));
+    return data;
+  }
+
+  private async handleInvalidSession(response: any) {
     this.setIsLogged(false);
     console.log(response, "handle invalid session");
     if (response.data.hasRt == true) {
@@ -53,9 +60,7 @@ export class AuthService {
   private async tryNewSession() {
     try {
       const data = this.http.post<{ data: any, status: boolean }>(
-        `${this.apiURL}auth/refresh-token`, 
-        {}, 
-        { withCredentials: true }
+        `${this.apiURL}auth/refresh-token`, {}, { withCredentials: true }
       ).pipe(take(1));
   
       const result = await firstValueFrom(data);

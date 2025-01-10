@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   ){}
 
   ngOnInit() {
-    this.handleUserSession.initializeUserSession();
+    this.handleUserSession.checkUserSession();
     console.log(this.userService.getUserData().subscribe({next: (value) => {console.log(value, "USER VALUE")}}))
     console.log(this.authService.getIsLogged().subscribe({next: (value) => {console.log(value, "ISLOGGED VALUE")}}))
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { SiteTitleComponent } from '../../../../shared/site-title/site-title.component';
+import { SiteTitleComponent } from '../../../../shared/components/site-title/site-title.component';
 import { ActiveContentAuthNavService } from '../../active-content-auth-nav.service';
 @Component({
   selector: 'app-sidenav-auth-lg',
