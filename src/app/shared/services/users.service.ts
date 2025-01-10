@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { BehaviorSubject, Observable, take} from 'rxjs';
+import IUserContent from '../interfaces/IUserContent';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { BehaviorSubject, Observable, take} from 'rxjs';
 export class UsersService {
   private result: any;
   private apiURL: string = environment.backendURL;
-  private userData$: BehaviorSubject<{username: string} | null> = new BehaviorSubject<{username: string} | null>(null);
+  private userData$: BehaviorSubject<IUserContent | null> = new BehaviorSubject<IUserContent | null>(null);
 
   constructor(
     private http: HttpClient,  
@@ -20,17 +21,23 @@ export class UsersService {
     return response;
   }
 
-  setUserData(newUserData: {username: string}){
+  setUserData(newUserData: IUserContent | null){
     console.log(newUserData, "NEW USER DATA")
-    this.userData$.next({username: newUserData.username});
+    if(!newUserData){
+      this.userData$.next(null);
+    }else{ 
+      this.userData$.next({userID: newUserData.userID, username: newUserData.username});
+    }
   }
 
-  getUserData(){
+  getUserData(): Observable<IUserContent | null>{
     return this.userData$.asObservable();
   }
 
-  postUsers(username: string, password: string): Observable<any> {
-    const data = this.http.post(`${this.apiURL}users`, {username, password}, { withCredentials: true } ).pipe(take(1)) 
+  requestPostUsers(username: string, password: string): Observable<any> {
+    const data = this.http.post(
+      `${this.apiURL}users`, {username, password}, { withCredentials: true } 
+    ).pipe(take(1));
     return data;
   }
 }

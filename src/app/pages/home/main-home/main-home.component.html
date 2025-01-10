@@ -13,6 +13,10 @@
       <div *ngIf="!weatherData">
         <p>Carregando dados...</p>
       </div>
+      <div *ngIf="islogged">
+        <p>{{userdata.userID}}</p>
+        <p>{{userdata.username}}</p>
+      </div>
     </div>
     <div class="h-1/10 flex justify-center items-end">
       <div class="h-10  bg-white-50 flex justify-center items-center px-5 rounded-2xl">

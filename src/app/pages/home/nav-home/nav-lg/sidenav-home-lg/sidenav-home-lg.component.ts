@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { SlideSidenavComponent } from '../slide-sidenav/slide-sidenav.component';
-import { SiteTitleComponent } from '../../../../../shared/site-title/site-title.component';
+import { SiteTitleComponent } from '../../../../../shared/components/site-title/site-title.component';
 import { CommonModule } from '@angular/common';
 import { ActiveSlideNavService } from '../../active-slide-nav.service';
 import { RouterLink } from '@angular/router';

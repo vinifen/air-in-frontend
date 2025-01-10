@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SiteTitleComponent } from '../../../../../shared/site-title/site-title.component';
+import { SiteTitleComponent } from '../../../../../shared/components/site-title/site-title.component';
 import { ActiveSlideNavService } from '../../active-slide-nav.service';
 import { CommonModule } from '@angular/common';
 import { ScSearchBarComponent } from '../../slide-content/sc-search-bar/sc-search-bar.component';
