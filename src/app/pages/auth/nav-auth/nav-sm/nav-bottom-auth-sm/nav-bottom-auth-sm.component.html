@@ -1,1 +1,23 @@
-<p>nav-bottom-auth-sm works!</p>
+<nav class="flex items-center justify-center flex-wrap">
+  <div class="bg-white-50 h-16 w-full mb-1 flex items-center justify-center rounded-2xl">
+    <div 
+      class="flex justify-between items-center mx-2 sm:mx-4 w-full h-full"
+    >
+      <button (click)="toggleContent('login')" 
+        class="w-14 h-16 rounded-xl"
+        [ngClass]="{'bg-white shadow-sm': activeContent === 'login'}"
+        >
+        <i class="bi bi-person-check-fill text-primary text-2xl"></i>
+        <p class="text-xs">Login</p>
+      </button>
+
+      <button (click)="toggleContent('register')" 
+        [ngClass]="{'bg-white shadow-sm': activeContent === 'register'}"
+        class="w-14 h-16 rounded-xl"
+        >
+        <i class="bi bi-person-plus-fill text-primary text-2xl"></i>
+        <p class="text-xs">Register</p>
+      </button>
+    </div>
+  </div>
+</nav>

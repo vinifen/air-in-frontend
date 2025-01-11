@@ -1,14 +1,46 @@
 <nav class="flex items-center justify-center flex-wrap">
-  <div class="bg-white-50 h-full w-full rounded-br-2xl rounded-bl-2xl sm:mx-1 sm:mt-3 sm:rounded-2xl  sm:w-15/16">
+  <div  class="bg-white-50 h-16 w-full mt-1 flex items-center justify-center rounded-2xl">
     <div 
-      class="flex justify-between items-center mx-2 h-14 sm:mx-4 sm:h-16"
+      class="flex justify-between items-center mx-2 sm:mx-4 w-5/6 h-full"
       [ngClass]="{'hidden': activeSlide === 'new', 'block': activeSlide !== 'new'}"
     >
-      <div
-        class="grid grid-cols-[auto_1fr] h-full"
-        [ngClass]="{'w-full mr-1 sm:w-3/6': activeSlide === 'account', 'w-auto': activeSlide !== 'account'}"
+    <div 
+        class="grid grid-cols-[auto_1fr] gap-2 h-full"
+        [ngClass]="{'w-4/5 sm:w-3/6': activeSlide === 'search-bar', 'w-auto': activeSlide !== 'search-bar'}"
       >
+       
         <div class="flex items-center col-start-1">
+          <button
+            (click)="toggleSlide('search-bar')" 
+            [ngClass]="{'bg-white shadow-sm': activeSlide === 'search-bar', 'bg-transparent': activeSlide !== 'search-bar'}"
+            class="h-10 w-10 rounded-xl flex items-center justify-center col-start-2"
+          >
+            <i class="bi bi-search text-primary text-2xl"></i>
+          </button>
+        </div>
+        <app-sc-search-bar 
+          [ngClass]="{'hidden': activeSlide !== 'search-bar', 'block': activeSlide === 'search-bar'}" 
+          class="h-full col-start-2 w-full"
+        ></app-sc-search-bar>
+      </div>
+      
+
+      <app-site-title [ngClass]="{
+        'hidden': activeSlide === 'new' || activeSlide === 'account' || activeSlide === 'search-bar',
+        'block': activeSlide !== 'new' && activeSlide !== 'account' && activeSlide !== 'search-bar'
+      }"></app-site-title>      
+     
+      
+
+      <div
+        class="grid grid-cols-[1fr_auto] gap-2 h-full"
+        [ngClass]="{'w-4/5 sm:w-3/5': activeSlide === 'account', 'w-auto': activeSlide !== 'account'}"
+      >
+        <app-sc-account 
+          class="h-full col-start-1 w-full"
+          [ngClass]="{'hidden': activeSlide !== 'account', 'block': activeSlide === 'account'}"
+        ></app-sc-account>
+        <div class="flex items-center col-start-2">
           <button 
             routerLink="/authentication"
             (click)="toggleSlide('account')" 
@@ -18,39 +50,11 @@
             <i class="bi bi-person-fill text-primary text-3xl"></i>
           </button>
         </div>
-        <app-sc-account 
-          class="h-full col-start-2 w-full"
-          [ngClass]="{'hidden': activeSlide !== 'account', 'block': activeSlide === 'account'}"
-        ></app-sc-account>
-      </div>
-
-      <app-site-title [ngClass]="{
-        'hidden': activeSlide === 'new' || activeSlide === 'account' || activeSlide === 'search-bar',
-        'block': activeSlide !== 'new' && activeSlide !== 'account' && activeSlide !== 'search-bar'
-      }"></app-site-title>      
-     
-      <div 
-        class="grid grid-cols-[1fr_auto] h-full"
-        [ngClass]="{'w-4/5 sm:w-3/6': activeSlide === 'search-bar', 'w-auto': activeSlide !== 'search-bar'}"
-      >
-        <app-sc-search-bar 
-          [ngClass]="{'hidden': activeSlide !== 'search-bar', 'block': activeSlide === 'search-bar'}" 
-          class="h-full col-start-1 w-full"
-        ></app-sc-search-bar>
-        <div class="flex items-center col-start-2">
-          <button
-            (click)="toggleSlide('search-bar')" 
-            [ngClass]="{'bg-white shadow-sm': activeSlide === 'search-bar', 'bg-transparent': activeSlide !== 'search-bar'}"
-            class="h-10 w-10 rounded-xl flex items-center justify-center col-start-2"
-          >
-            <i class="bi bi-search text-primary text-2xl"></i>
-          </button>
-        </div>
       </div>
 
     </div>
 
-    <app-sc-new [ngClass]="{'hidden': activeSlide !== 'new', 'block': activeSlide === 'new'}"></app-sc-new>
+    <app-sc-new [ngClass]="{'hidden': activeSlide !== 'new', 'block': activeSlide === 'new'}" class="w-14/15 sm:4/5 md:w-4/6 "></app-sc-new>
 
   </div>
   
