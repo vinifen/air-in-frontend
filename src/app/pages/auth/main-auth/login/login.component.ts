@@ -39,7 +39,6 @@ export class LoginComponent {
       this.errorMessage = null;
     }
 
-
     this.isFormValid = !this.errorMessage;
     console.log(this.isFormValid);
   }
