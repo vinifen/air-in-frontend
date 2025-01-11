@@ -14,7 +14,6 @@ import { UserSessionHandlerService } from './shared/services/user-session-handle
 })
 export class AppComponent implements OnInit {
   title = 'air-in';
-  private result: any;
 
   constructor(
     private handleUserSession: UserSessionHandlerService,
@@ -27,7 +26,5 @@ export class AppComponent implements OnInit {
     console.log(this.userService.getUserData().subscribe({next: (value) => {console.log(value, "USER VALUE")}}))
     console.log(this.authService.getIsLogged().subscribe({next: (value) => {console.log(value, "ISLOGGED VALUE")}}))
   }
-
-  
 
 }
