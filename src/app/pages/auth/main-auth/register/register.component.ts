@@ -78,7 +78,7 @@ export class RegisterComponent {
         this.errorMessage = data.message
       }
     } catch (err: any) {
-      this.errorMessage = err.error.data.message;
+      this.errorMessage = err.message || "An unexpected error occurred"; 
       this.successMessage = null;
     }
   

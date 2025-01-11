@@ -19,11 +19,11 @@ export class UserSessionHandlerService {
     }
     
     console.log(resultSession, "initial session 1");
-    if (resultSession.status == false && !userResponse.data.content) {
+    if (resultSession.status == false || !userResponse.data.content) {
       this.authService.setIsLogged(false);
       this.userService.setUserData(null);
       console.log(this.userService.getUserData().subscribe({next: (v) => console.log(v, "É PRA SER NULL CHECKUSER")}))
-      return {status: false};
+      return {status: false, message: resultSession};
     }
     console.log(resultSession, userResponse, "initial session  2");
     this.userService.setUserData(userResponse.data.content);
@@ -47,12 +47,13 @@ export class UserSessionHandlerService {
             console.log(this.userService.getUserData().subscribe({next: (v) => console.log(v, "É PRA SER NULL REGISTER")}))
             resolve({status: false, message: value.data.message});
           }
-          resolve(value);
         },
         error: (err: any) => {
+          console.log(err, "ERRO DE REGISTRO");
+          const errorMessage = err?.error?.data?.message || "An error occurred"; 
           this.authService.setIsLogged(false);
           this.userService.setUserData(null);
-          reject({status: false, message: err.data.message});
+          reject({ status: false, message: errorMessage });
         }
       });
     });
