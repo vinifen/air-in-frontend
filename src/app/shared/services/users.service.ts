@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { BehaviorSubject, Observable, take} from 'rxjs';
-import IUserContent from '../interfaces/IUserContent';
+import IUserData from '../interfaces/IUserData';
 
 @Injectable({
   providedIn: 'root'
@@ -10,18 +10,16 @@ import IUserContent from '../interfaces/IUserContent';
 export class UsersService {
   private result: any;
   private apiURL: string = environment.backendURL;
-  private userData$: BehaviorSubject<IUserContent | null> = new BehaviorSubject<IUserContent | null>(null);
+  private userData$: BehaviorSubject<IUserData | null> = new BehaviorSubject<IUserData | null>(null);
 
-  constructor(
-    private http: HttpClient,  
-  ){}
+  constructor(private http: HttpClient,){}
 
   requestUser() {
     const response = this.http.get<{status: boolean, data: any}>(`${this.apiURL}users`, {withCredentials: true}).pipe(take(1));
     return response;
   }
 
-  setUserData(newUserData: IUserContent | null){
+  setUserData(newUserData: IUserData | null){
     console.log(newUserData, "NEW USER DATA")
     if(!newUserData){
       this.userData$.next(null);
@@ -30,7 +28,7 @@ export class UsersService {
     }
   }
 
-  getUserData(): Observable<IUserContent | null>{
+  getUserData(): Observable<IUserData | null>{
     return this.userData$.asObservable();
   }
 

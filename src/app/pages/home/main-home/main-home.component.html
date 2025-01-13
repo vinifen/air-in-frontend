@@ -1,27 +1,29 @@
 <div class="flex flex-col justify-center items-center w-full h-full">
-  <div class="bg-white-50 w-full h-full rounded-xl flex flex-col lg:h-15/16 lg:w-full">
-    <div class="h-9/10">
-      <div *ngIf="weatherData">
-        <h1>Clima em {{ weatherData.name }}</h1>
-        <p>Temperatura: {{ weatherData.main.temp }}°C</p>
-        <p>Descrição: {{ weatherData.weather[0].description }}</p>
-        <p>Umidade: {{ weatherData.main.humidity }}%</p>
-        <p>Min temp: {{ weatherData.main.temp_min }}%</p>
-        <p>Max temp: {{ weatherData.main.feels_like }}%</p>
-        <p>Principal: {{ weatherData.weather[0].main }}</p>
+  <div class="bg-white-50 w-full h-full rounded-2xl flex flex-col lg:h-15/16 lg:w-full">
+    <div class="h-full w-full grid grid-rows-[1fr_auto] gap-1">
+      <div class="w-full h-full row-start-1">
+        <div *ngIf="weatherData">
+          <h1>Clima em {{ weatherData.name }}</h1>
+          <p>Temperatura: {{ weatherData.main.temp }}°C</p>
+          <p>Descrição: {{ weatherData.weather[0].description }}</p>
+          <p>Umidade: {{ weatherData.main.humidity }}%</p>
+          <p>Min temp: {{ weatherData.main.temp_min }}%</p>
+          <p>Max temp: {{ weatherData.main.feels_like }}%</p>
+          <p>Principal: {{ weatherData.weather[0].main }}</p>
+        </div>
+        <div *ngIf="!weatherData">
+          <p>Carregando dados...</p>
+        </div>
+        <div *ngIf="islogged">
+          <p>{{userdata.userID}}</p>
+          <p>{{userdata.username}}</p>
+        </div>
       </div>
-      <div *ngIf="!weatherData">
-        <p>Carregando dados...</p>
-      </div>
-      <div *ngIf="islogged">
-        <p>{{userdata.userID}}</p>
-        <p>{{userdata.username}}</p>
-      </div>
+      <div class="h-10 w-full flex justify-center items-end row-start-2">
+        <div class="h-10  bg-white-50 flex justify-center items-center px-5 rounded-2xl">
+          Today
+        </div>
+      <div>
     </div>
-    <div class="h-1/10 flex justify-center items-end">
-      <div class="h-10  bg-white-50 flex justify-center items-center px-5 rounded-2xl">
-        Today
-      </div>
-    <div>
   </div>
 </div>
