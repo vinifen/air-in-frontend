@@ -1,13 +1,13 @@
 <nav class="flex items-center justify-center flex-wrap">
   <app-slide-nav-bottom [activeSlide]="activeSlide" *ngIf="activeSlide" class="w-full sm:w-15/16"></app-slide-nav-bottom>
   <div 
-    class="bg-white-50 h-16 w-full mb-1 flex items-center justify-center rounded-2xl"
+    class="bg-white-50 h-14 w-full mb-1 flex items-center justify-center rounded-2xl md:h-16"
     [ngClass]="{
       'rounded-tl-none rounded-tr-none rounded-br-2xl rounded-bl-2xl': activeSlide === 'credits' || activeSlide === 'settings',
-      'rounded-xl': activeSlide !== 'credits' && activeSlide !== 'settings'
+      'rounded-2xl': activeSlide !== 'credits' && activeSlide !== 'settings'
     }"
   >
-    <div class="h-full flex justify-between items-center mx-2 w-11/12">
+    <div class="h-full flex justify-between items-center mx-2 w-11/12 md:w-5/6">
       <button 
         (click)="toggleSlide('settings')" 
         [ngClass]="{'bg-white shadow-sm': activeSlide === 'settings', 'bg-transparent': activeSlide !== 'settings'}"

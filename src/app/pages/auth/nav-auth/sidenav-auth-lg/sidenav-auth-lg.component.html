@@ -4,25 +4,29 @@
       <app-site-title></app-site-title>
     </div>
     
-    <button routerLink="/"
-            class="w-14 rounded-xl h-20">
+    <button
+      routerLink="/"
+      class="w-14 rounded-xl h-14"
+    >
       <i class="bi bi-arrow-left text-primary text-2xl"></i>
     </button>
 
-    <button (click)="toggleContent('login')" 
-            class="w-14 rounded-xl h-20"
-            [ngClass]="{'bg-white shadow-sm': activeContent === 'login'}"
-            >
-            <i class="bi bi-person-check-fill text-primary text-3xl"></i>
-            <p class="text-xs">Login</p>
+    <button 
+      (click)="toggleContent('login')" 
+      class="w-14 rounded-xl h-14"
+      [ngClass]="{'bg-white shadow-sm': activeContent === 'login'}"
+    >
+      <i class="bi bi-person-check-fill text-primary text-2xl"></i>
+      <p class="text-xs">Login</p>
     </button>
 
-    <button (click)="toggleContent('register')" 
+    <button 
+      (click)="toggleContent('register')" 
       [ngClass]="{'bg-white shadow-sm': activeContent === 'register'}"
-      class="w-14 rounded-xl h-20"
-      >
-      <i class="bi bi-person-plus-fill text-primary text-3xl"></i>
-      <p class="text-xs">Create Account</p>
+      class="w-14 rounded-xl h-14"
+    >
+      <i class="bi bi-person-plus-fill text-primary text-2xl"></i>
+      <p class="text-xs">Register</p>
     </button>
 
   </div>

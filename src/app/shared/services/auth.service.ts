@@ -37,6 +37,15 @@ export class AuthService {
     return data;
   }
 
+  requestLogout(){
+    console.log("asdfasdfLOGOUT")
+    const data = this.http.post(
+      `${this.apiURL}auth/logout`, {}, {withCredentials: true }
+    ).pipe(take(1));
+    console.log("asdfasdfLOGOUT2222222", data);
+    return data;
+  }
+
   private async handleInvalidSession(response: any) {
     this.setIsLogged(false);
     console.log(response, "handle invalid session");
