@@ -21,7 +21,7 @@ export class MainHomeComponent implements OnInit {
   async ngOnInit(){
     this.apiWeatherService.getWeather(['Guarapuava', 'new york']).subscribe({
       next: (response) => {
-        console.log(response.data[0].content);
+        console.log(response);
         this.weatherData = response.data[0].content;
       },
       error: (err) => {

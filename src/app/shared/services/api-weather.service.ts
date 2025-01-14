@@ -13,7 +13,7 @@ export class ApiWeatherService {
   constructor(private http: HttpClient) {}
 
   getWeather(cities: string[]): Observable<any>{
-    const data = this.http.post(`${this.apiURL}cities/weather/unlogged`, cities).pipe(take(1));
+    const data = this.http.post(`${this.apiURL}cities-weather/public`, cities).pipe(take(1));
     console.log(data);
     return data;
   }
