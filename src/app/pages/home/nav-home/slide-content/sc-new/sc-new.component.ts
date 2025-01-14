@@ -28,7 +28,7 @@ export class ScNewComponent implements AfterViewChecked {
     console.log("submit city", cityArray);
     const isLogged = await firstValueFrom(this.authService.getIsLogged())
     if(isLogged){ 
-      this.citiesService.requestPostCities(cityArray).subscribe({
+      this.citiesService.requestPostCitiesWeather(cityArray).subscribe({
         next: (response) => {
           console.log(response, "RESULTADO CITIES NEW");
         },
@@ -37,7 +37,7 @@ export class ScNewComponent implements AfterViewChecked {
         }
       });
     }else{
-      this.citiesService.requestCitiesWeatherDataUnlogged(cityArray).subscribe({next: (response) => {console.log(response, "RESULTADO CITIES NEW UNLOGGED");}})
+      this.citiesService.requestCitiesWeatherPublic(cityArray).subscribe({next: (response) => {console.log(response, "RESULTADO CITIES NEW UNLOGGED");}})
     }
     this.inputNewCity = ""; 
   }
