@@ -1,15 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, take, map } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { map, switchMap, take, tap } from 'rxjs/operators';
-import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import ICitiesData from '../interfaces/ICitiesData';
 import { UsersService } from './users.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CitiesService {
+export class CitiesWeatherService {
   private citiesData$: BehaviorSubject<ICitiesData[] | null> = new BehaviorSubject<ICitiesData[] | null>(null);
   private apiURL: string = environment.backendURL;
  

@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewChecked, Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CitiesService } from '../../../../../shared/services/cities.service';
 import { AuthService } from '../../../../../shared/services/auth.service';
 import { firstValueFrom } from 'rxjs';
+import { CitiesWeatherService } from '../../../../../shared/services/cities-weather.service';
+import { CitiesWSessionHandlerService } from '../../../../../shared/services/cities-w-session-handler.service';
 
 @Component({
   selector: 'app-sc-new',
@@ -16,7 +17,11 @@ export class ScNewComponent implements AfterViewChecked {
   @ViewChild('newInput') searchInput!: ElementRef;
   inputNewCity: string = "";
 
-  constructor(private citiesService: CitiesService, private authService: AuthService) {}
+  constructor(
+    private citiesWeatherService: CitiesWeatherService, 
+    private authService: AuthService,
+    private citiesWHandler: CitiesWSessionHandlerService
+  ) {}
 
   async onSubmit() {
     if (!this.inputNewCity.trim()) {
@@ -28,7 +33,7 @@ export class ScNewComponent implements AfterViewChecked {
     console.log("submit city", cityArray);
     const isLogged = await firstValueFrom(this.authService.getIsLogged())
     if(isLogged){ 
-      this.citiesService.requestPostCitiesWeather(cityArray).subscribe({
+      this.citiesWeatherService.requestPostCitiesWeather(cityArray).subscribe({
         next: (response) => {
           console.log(response, "RESULTADO CITIES NEW");
         },
@@ -37,7 +42,7 @@ export class ScNewComponent implements AfterViewChecked {
         }
       });
     }else{
-      this.citiesService.requestCitiesWeatherPublic(cityArray).subscribe({next: (response) => {console.log(response, "RESULTADO CITIES NEW UNLOGGED");}})
+      this.citiesWHandler.postCitiesWeatherPublic(cityArray);
     }
     this.inputNewCity = ""; 
   }
