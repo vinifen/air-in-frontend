@@ -1,12 +1,12 @@
 <div class="flex flex-col justify-center items-center w-full h-full">
   <div class="w-full h-full rounded-2xl flex flex-col lg:h-15/16 lg:w-full">
     <div class="h-full w-full relative">
-      <!-- Área de Conteúdo com Rolagem -->
       <div class="absolute top-0 h-full w-full overflow-y-auto">
         <div class="flex flex-wrap justify-start items-start w-full">
           <div
             *ngFor="let ctWtData of weatherData$; let i = index"
-            class="w-2/4 md:w-2/6 lg:w-1/4 h-80"
+            class="w-2/4 md:w-2/6 h-80"
+            [ngClass]="{'lg:w-1/4': !activeSlide$, 'lg:w-2/4': !!activeSlide$}"
           >
             <div class="bg-white-50 mr-2 h-full">
               <p> {{ ctWtData.content.name }} </p>
@@ -16,9 +16,6 @@
           </div>
         </div>
       </div>
-      <!-- Área do Rodapé -->
-      
-      
     </div>
   </div>
 </div>

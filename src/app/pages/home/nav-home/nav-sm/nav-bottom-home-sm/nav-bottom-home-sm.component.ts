@@ -14,19 +14,19 @@ import { SlideNavBottomComponent } from '../slide-nav-bottom/slide-nav-bottom.co
 export class NavBottomHomeSmComponent implements OnInit {
   @Output() activeSlideChange = new EventEmitter<string | null>();
 
-  activeSlide: string | null = null;
+  activeSlide$: string | null = null;
   
 
   constructor(private activeSlideService$: ActiveSlideNavService){}
 
   ngOnInit(): void {
     this.activeSlideService$.getActiveSlide().subscribe((content) =>{
-      this.activeSlide = content;
-      this.activeSlideChange.emit(this.activeSlide); 
+      this.activeSlide$ = content;
+      this.activeSlideChange.emit(this.activeSlide$); 
     })
   }
 
   toggleSlide(newContent: string): void {
-    this.activeSlideService$.setActiveSlide(this.activeSlide === newContent ? null : newContent);
+    this.activeSlideService$.setActiveSlide(this.activeSlide$ === newContent ? null : newContent);
   }
 }

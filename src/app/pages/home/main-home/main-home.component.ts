@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiWeatherService } from '../../../shared/services/api-weather.service';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../shared/services/auth.service';
-import { UsersService } from '../../../shared/services/users.service';
 import { CitiesWSessionHandlerService } from '../../../shared/services/cities-w-session-handler.service';
 import { firstValueFrom } from 'rxjs';
 import { CitiesWeatherService } from '../../../shared/services/cities-weather.service';
+import { ActiveSlideNavService } from '../nav-home/active-slide-nav.service';
 
 @Component({
   selector: 'app-main-home',
@@ -18,15 +17,23 @@ export class MainHomeComponent implements OnInit {
   islogged$: boolean = false;
   weatherData$: any;
   userdata: any;
+  activeSlide$: string | null = null;
 
   constructor(
     private authService: AuthService, 
-    private userService: UsersService, 
+    private activeSlideService: ActiveSlideNavService,
     private citiesWHandler: CitiesWSessionHandlerService, 
     private citiesWeatherService: CitiesWeatherService
   ) {}
 
   async ngOnInit(){
+    this.activeSlideService.getActiveSlide().subscribe({
+      next: (value)=>{
+        this.activeSlide$ = value;
+        console.log(this.activeSlide$, "ACTIVESLIDE$ VALUE em main-home")
+      } 
+    });
+
     this.authService.getIsLogged().subscribe({
       next: (value: boolean) => {
         this.islogged$ = value;

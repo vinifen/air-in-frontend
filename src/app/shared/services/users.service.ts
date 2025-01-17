@@ -24,7 +24,7 @@ export class UsersService {
     if(!newUserData){
       this.userData$.next(null);
     }else{ 
-      this.userData$.next({userID: newUserData.userID, username: newUserData.username});
+      this.userData$.next({publicUserID: newUserData.publicUserID, username: newUserData.username});
     }
   }
 
