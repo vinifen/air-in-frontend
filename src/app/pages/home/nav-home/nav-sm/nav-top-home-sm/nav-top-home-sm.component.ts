@@ -16,16 +16,16 @@ import { AuthService } from '../../../../../shared/services/auth.service';
   styleUrl: './nav-top-home-sm.component.css'
 })
 export class NavTopHomeSmComponent implements OnInit {
-  activeSlide: string | null = null;
+  activeSlide$: string | null = null;
 
   constructor(
-    private activeSlideService$: ActiveSlideNavService,
+    private activeSlideService: ActiveSlideNavService,
     private authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    this.activeSlideService$.getActiveSlide().subscribe((content) => {
-      this.activeSlide = content;
+    this.activeSlideService.getActiveSlide().subscribe((content) => {
+      this.activeSlide$ = content;
     });
   }
 
@@ -35,7 +35,7 @@ export class NavTopHomeSmComponent implements OnInit {
       if(value == false && newContent === "account"){
         return
       }
-      this.activeSlideService$.setActiveSlide(this.activeSlide === newContent ? null : newContent);
+      this.activeSlideService.setActiveSlide(this.activeSlide$ === newContent ? null : newContent);
     }});
   }
 }

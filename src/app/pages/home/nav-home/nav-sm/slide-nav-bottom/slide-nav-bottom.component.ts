@@ -16,12 +16,12 @@ import { ScCreditsComponent } from '../../slide-content/sc-credits/sc-credits.co
   styleUrl: './slide-nav-bottom.component.css'
 })
 export class SlideNavBottomComponent {
-  @Input() activeSlide: string | null = null;
+  @Input() activeSlide$: string | null = null;
   constructor(){
-    console.log(this.activeSlide);
+    console.log(this.activeSlide$);
   }
   getComponent(){
-    switch(this.activeSlide){
+    switch(this.activeSlide$){
       case 'settings':
         return ScSettingsComponent;
       case 'credits':
