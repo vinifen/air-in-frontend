@@ -22,36 +22,32 @@ export class CitiesWSessionHandlerService {
     })
   }
 
-  // postCitiesWeatherPublic(city: string[]) {
-  //   console.log("aqui aqui");
-  
-  //   this.citiesWeatherService.requestCitiesWeatherPublic(city).subscribe({
-  //     next: async (value: any) => {
-  //       try {
-  //         // Obtém os dados existentes
-  //         const existingData: ICitiesData[] | null = await firstValueFrom(this.citiesWeatherService.getCitiesData());
-  //         console.log("Dados existentes:", existingData);
-  
-  //         // Combina os dados antigos com os novos
-  //         const updatedData = existingData 
-  //           ? [...existingData, ...value.data] // Se houver dados antigos, combine
-  //           : [...value.data]; // Caso contrário, use apenas os novos
-  
-  //         console.log("Dados combinados:", updatedData);
-  
-  //         // Atualiza os dados no serviço
-  //         this.citiesWeatherService.setCitiesData(updatedData);
-  //       } catch (error) {
-  //         console.error("Erro ao atualizar os dados:", error);
-  //       }
-  //     }
-  //   });
-  // }
-  postCitiesWeather(cities: string[]){
-    this.citiesWeatherService.requestPostCitiesWeather(cities).subscribe({
 
-    })
+  postCitiesWeather(cities: string[]) {
+    this.citiesWeatherService.requestPostCitiesWeather(cities).subscribe({
+      next: async (newCities: any) => {
+        try {
+          console.log(newCities, "NOVAS CIDADES POSTADAS");
+  
+          const filteredNewCities = await this.removeInvalidCitiesW(newCities.data);
+  
+          if (filteredNewCities.status && filteredNewCities.data) {
+            const updatedData = await this.updatedCitiesWeatherData(filteredNewCities.data);
+          
+            if (updatedData) {
+              this.citiesWeatherService.setCitiesData(updatedData);
+            }
+          }
+        } catch (error) {
+          console.error("Erro ao processar as cidades:", error);
+        }
+      },
+      error: (err) => {
+        console.error("Erro na requisição para postCitiesWeather:", err);
+      }
+    });
   }
+
 
   postCitiesWeatherPublic(cities: string[]) {
     this.citiesWeatherService.requestCitiesWeatherPublic(cities).subscribe({
@@ -74,7 +70,9 @@ export class CitiesWSessionHandlerService {
     })
   }
 
+
   private async removeInvalidCitiesW(cities: ICitiesData[] ){
+    console.log(cities, "remove invalid cities CITY");
     const filteredCities = cities.filter(cities => !!cities.status);
 
     if(filteredCities.length == 0){
@@ -92,6 +90,7 @@ export class CitiesWSessionHandlerService {
     }
     return {status: true, data: filteredCities, message: "All cities successfully."};
   }
+  
 
   private async updatedCitiesWeatherData(newCities: ICitiesData[]){
     if(!newCities){

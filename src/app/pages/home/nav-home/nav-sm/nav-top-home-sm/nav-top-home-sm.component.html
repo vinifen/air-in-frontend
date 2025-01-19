@@ -4,7 +4,7 @@
       class="flex justify-between items-center mx-2 h-full w-11/12 md:w-5/6"
       [ngClass]="{'hidden': activeSlide$ === 'new', 'block': activeSlide$ !== 'new'}"
     >
-    <div 
+      <div 
         class="grid grid-cols-[auto_1fr] gap-2 h-full"
         [ngClass]="{' w-full xs:w-10/12 md:w-8/12': activeSlide$ === 'search-bar', 'w-auto': activeSlide$ !== 'search-bar'}"
       >
@@ -12,7 +12,7 @@
         <div class="flex items-center col-start-1">
           <button
             (click)="toggleSlide('search-bar')" 
-            [ngClass]="{'bg-white shadow-sm': activeSlide$ === 'search-bar', 'bg-transparent': activeSlide$ !== 'search-bar'}"
+            [ngClass]="{'bg-white-50 shadow-sm': activeSlide$ === 'search-bar', 'bg-transparent': activeSlide$ !== 'search-bar'}"
             class="h-10 w-10 rounded-xl flex items-center justify-center col-start-2"
           >
             <i class="bi bi-search text-primary text-2xl"></i>
@@ -44,7 +44,7 @@
           <button 
             routerLink="/authentication"
             (click)="toggleSlide('account')" 
-            [ngClass]="{'bg-white shadow-sm': activeSlide$ === 'account', 'bg-transparent': activeSlide$ !== 'account'}"
+            [ngClass]="{'bg-white-50 shadow-sm': activeSlide$ === 'account', 'bg-transparent': activeSlide$ !== 'account'}"
             class="h-10 w-10 rounded-xl"
           >
             <i class="bi bi-person-fill text-primary text-3xl"></i>
@@ -54,7 +54,7 @@
 
     </div>
 
-    <app-sc-new [ngClass]="{'hidden': activeSlide$ !== 'new', 'block': activeSlide$ === 'new'}" class="w-14/15 sm:4/5 md:w-4/6 "></app-sc-new>
+    <app-sc-new [ngClass]="{'hidden': activeSlide$ !== 'new', 'block': activeSlide$ === 'new'}" class="w-15/16 xs:w-5/6"></app-sc-new>
 
   </div>
   

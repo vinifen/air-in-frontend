@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../../shared/services/auth.service';
 import { firstValueFrom } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { UsersService } from '../../../../../shared/services/users.service';
+import IUserData from '../../../../../shared/interfaces/IUserData';
 
 @Component({
   selector: 'app-sc-account',
@@ -10,8 +12,13 @@ import { CommonModule } from '@angular/common';
   templateUrl: './sc-account.component.html',
   styleUrl: './sc-account.component.css'
 })
-export class ScAccountComponent {
-  constructor(private authService: AuthService){}
+export class ScAccountComponent implements OnInit {
+  userData: IUserData | null = null;
+  constructor(private authService: AuthService, private userService: UsersService){}
+
+  async ngOnInit() {
+    this.userData = await firstValueFrom(this.userService.getUserData())
+  }
 
   async toggleLogout(){
     

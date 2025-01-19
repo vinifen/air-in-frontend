@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { AuthService } from './auth.service';
 import { UsersService } from './users.service';
 
@@ -7,9 +7,20 @@ import { UsersService } from './users.service';
   providedIn: 'root'
 })
 export class UserSessionHandlerService {
+  isInitialized$ = new BehaviorSubject<boolean>(false);
   constructor(private authService: AuthService, private userService: UsersService) {}
 
+  setIsInitialized(value: boolean){
+    this.isInitialized$.next(value);
+  }
+
+  getIsInitialized(){
+    return this.isInitialized$.asObservable();
+  }
+
+
   async checkUserSession() {
+    
     const userResponse: {status: boolean, data: any} = await firstValueFrom(this.userService.requestUser());
 
     const resultSession: {status: boolean, newSession: boolean} = await this.authService.validateSession(userResponse);
@@ -22,12 +33,14 @@ export class UserSessionHandlerService {
     if (resultSession.status == false || !userResponse.data.content) {
       this.authService.setIsLogged(false);
       this.userService.setUserData(null);
-      console.log(this.userService.getUserData().subscribe({next: (v) => console.log(v, "É PRA SER NULL CHECKUSER")}))
+      console.log(this.userService.getUserData().subscribe({next: (v) => console.log(v, "É PRA SER NULL CHECKUSER")}));
+      this.setIsInitialized(true);
       return {status: false, message: resultSession};
     }
     console.log(resultSession, userResponse, "initial session  2");
     this.userService.setUserData(userResponse.data.content);
-    return {userResponse};
+    this.setIsInitialized(true);
+    return {status: userResponse.status, data: userResponse.data};
    
   }
 
