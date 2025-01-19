@@ -30,7 +30,6 @@ export class CitiesWeatherService {
   }
 
   requestPostCitiesWeather(cityNames: string[]) {
-
     return this.http.post(`${this.apiURL}cities-weather`, {cities: cityNames}, {withCredentials: true}).pipe(take(1));
   }
 

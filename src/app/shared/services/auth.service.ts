@@ -45,14 +45,17 @@ export class AuthService {
     console.log("asdfasdfLOGOUT2222222", data);
     return data;
   }
+  
 
   private async handleInvalidSession(response: any) {
     this.setIsLogged(false);
     console.log(response, "handle invalid session");
     if (response.data.hasRt == true) {
-      const result = await this.tryNewSession();
+      
+      const result = await this.requestTryNewSession();
       
       if (result === true) {
+        this.setIsLogged(true);
         console.log("handle invalid session AQUI")
         return {status: true, newSession: true}
       }
@@ -66,7 +69,7 @@ export class AuthService {
     return {status: true, newSession: false}
   }
 
-  private async tryNewSession() {
+  private async requestTryNewSession() {
     try {
       const data = this.http.post<{ data: any, status: boolean }>(
         `${this.apiURL}auth/refresh-token`, {}, { withCredentials: true }
