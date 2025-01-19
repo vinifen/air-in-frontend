@@ -1,12 +1,9 @@
 <div class="h-full w-full flex items-center justify-start lg:hidden">
   <div class="flex w-full h-10 items-center justify-start">
-    <div class="flex items-center justify-around h-full w-full bg-white rounded-xl shadow-sm">      
-      <a class="bg-gray-50 text-sm border-2 border-gray-500 border-opacity-20 rounded-xl h-3/4 w-1/4 flex items-center justify-center text-center sm:w-24">
+    <div class="flex items-center justify-around h-full w-full bg-white-50 rounded-xl shadow-sm">      
+      <button class="bg-gray-50 text-sm border-2 border-gray-500 border-opacity-20 rounded-xl h-3/4 w-1/4 flex items-center justify-center text-center sm:w-24">
         <i class="bi bi-person-square text-xl text-primary"></i>            
-      </a>               
-      <a class="bg-gray-50 text-sm border-2 border-gray-500 border-opacity-20 rounded-xl h-3/4 w-1/4 flex items-center justify-center text-center sm:w-24">
-        <i class="bi bi-gear-wide text-xl text-primary"></i> 
-      </a>
+      </button>               
       <button (click)="toggleLogout()" class="bg-gray-50 text-sm border-2 border-gray-500 border-opacity-20 rounded-xl h-3/4 w-1/4 flex items-center justify-center text-center sm:w-24">
         <i class="bi bi-box-arrow-in-left text-xl text-primary"></i>
       </button>
@@ -14,20 +11,19 @@
   </div>
 </div>
 
-<div class="hidden lg:h-full w-60 lg:grid lg:grid-rows-6">
-  <div class="row-start-2 row-end-4 flex justify-start items-center">
-    <div class="bg-white w-full h-full mr-5 rounded-2xl shadow-sm flex justify-start items-center">
-      <div class="flex flex-col justify-between items-center h-5/6 w-full">
-        <h1 class="w-4/6 mx-5  flex items-center justify-center">Olá Vinicius</h1>
-        <a class="bg-gray-50 text-sm border-2 border-gray-500 border-opacity-20 rounded-xl w-4/6 h-10 mx-5 flex items-center justify-center">
-          <i class="bi bi-person-square text-xl text-primary"></i> 
-        </a>
-        <a class="bg-gray-50 text-sm border-2 border-gray-500 border-opacity-20 rounded-xl w-4/6 h-10 mx-5 flex items-center justify-center">
-          <i class="bi bi-gear-wide text-xl text-primary"></i> 
-        </a>
-        <button (click)="toggleLogout()" class="bg-gray-50 text-sm border-2 border-gray-500 border-opacity-20 rounded-xl w-4/6 h-10 mx-5 flex items-center justify-center">
-          <i class="bi bi-box-arrow-in-left text-xl text-primary"></i>
-        </button>
+<div class="hidden lg:h-full lg:w-72 lg:grid lg:grid-rows-6">
+  <div class="row-start-2 row-end-4 flex justify-start items-start">
+    <div class="bg-white-50 w-15/16 h-3/4 rounded-2xl shadow-sm flex justify-center items-center">
+      <div class="flex flex-col justify-between items-center h-5/6  w-5/6">
+        <h1 class="flex items-center justify-center w-full h-1/4 text-primary">Hello {{userData?.username}}</h1>
+          <div class="w-full h-3/4 flex flex-col justify-around items-center">
+            <button class="bg-gray-50 text-sm border-2 border-gray-500 border-opacity-20 rounded-xl h-10 flex w-full items-center justify-center">
+              <i class="bi bi-person-square text-xl  text-primary"></i> 
+            </button>
+            <button (click)="toggleLogout()" class="bg-gray-50 text-sm border-2 border-gray-500 border-opacity-20 w-full rounded-xl h-10 flex items-center justify-center">
+              <i class="bi bi-box-arrow-in-left text-xl text-primary"></i>
+            </button>
+          </div>
       </div>
     </div>
   </div>

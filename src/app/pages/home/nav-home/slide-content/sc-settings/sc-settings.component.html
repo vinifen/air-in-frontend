@@ -1,1 +1,14 @@
-<div class="">sc-settings works!</div>
+<div>
+  <button (click)="toggleDelete()">Delete User</button>
+  <input [(ngModel)]="inputPasswordDelete" type="text">
+</div>
+<div>
+  <button (click)="toggleUpdateUsername()">Edit Username</button>
+  <input [(ngModel)]="inputNewUsername" type="text" placeholder="new username"> 
+  <input [(ngModel)]="inputPasswordEditUsername" type="text" placeholder="password editUsername"> 
+</div>
+<div>
+  <button (click)="toggleUpdatePassword()">Edit Password</button>
+  <input [(ngModel)]="inputNewPasswordAlterPassword" type="text" placeholder="new password"> 
+  <input [(ngModel)]="inputOldPasswordAlterPassword" type="text" placeholder="old password"> 
+</div>

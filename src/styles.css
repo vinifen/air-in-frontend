@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -22,18 +22,23 @@ html {
   height: calc(var(--vh, 1vh) * 100);
 }
 
+input:focus {
+  outline: none;
+  border-color: #a2a2a2 !important;
+}
+
 ::-webkit-scrollbar {
-  width: 8px; /* Largura da barra de rolagem */
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: transparent; /* Cor de fundo do track */
-  border-radius: 10px; /* Borda arredondada no track */
+  background-color: transparent;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #c2c2c2; /* Cor da parte clicável da barra */
-  border-radius: 10px; /* Borda arredondada no thumb */
+  background-color: #cccccc; 
+  border-radius: 10px; 
 }
 
 

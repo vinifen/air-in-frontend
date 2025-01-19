@@ -33,14 +33,7 @@ export class ScNewComponent implements AfterViewChecked {
     console.log("submit city", cityArray);
     const isLogged = await firstValueFrom(this.authService.getIsLogged())
     if(isLogged){ 
-      this.citiesWeatherService.requestPostCitiesWeather(cityArray).subscribe({
-        next: (response) => {
-          console.log(response, "RESULTADO CITIES NEW");
-        },
-        error: (err) => {
-          console.error("Erro ao enviar cidades:", err);
-        }
-      });
+      this.citiesWHandler.postCitiesWeather(cityArray);
     }else{
       this.citiesWHandler.postCitiesWeatherPublic(cityArray);
     }

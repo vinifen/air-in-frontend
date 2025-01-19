@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     
   
-    
+    console.log("RODOU APP.ts ")
     this.handleUserSession.checkUserSession();
     const data = this.handlerCitiesWeatherSession.checkCities();
     this.citiesWeatherService.getCitiesData().subscribe({
