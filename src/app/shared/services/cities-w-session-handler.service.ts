@@ -4,12 +4,17 @@ import ICitiesData from '../interfaces/ICitiesData';
 import { AuthService } from './auth.service';
 import { CitiesWeatherService } from './cities-weather.service';
 import { U } from '@angular/cdk/keycodes';
+import { UserSessionHandlerService } from './user-session-handler.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CitiesWSessionHandlerService {
-  constructor(private authService: AuthService, private citiesWeatherService: CitiesWeatherService) {}
+  constructor(
+    private authService: AuthService, 
+    private citiesWeatherService: CitiesWeatherService, 
+    private userSessionHandlerS: UserSessionHandlerService
+  ) {}
 
   checkCities(){
     this.authService.getIsLogged().subscribe({
@@ -27,6 +32,20 @@ export class CitiesWSessionHandlerService {
     this.citiesWeatherService.requestPostCitiesWeather(cities).subscribe({
       next: async (newCities: any) => {
         try {
+
+          if(!newCities.status && newCities.data.stStatus === false){
+            console.log("rodou ERROR cITIES");
+            const resultError = await this.userSessionHandlerS.handlerErrorRequest(newCities);
+            if(resultError.status == false && resultError.newSession === false){
+              this.citiesWeatherService.setCitiesData(null);
+              console.error("Unlogged");
+              return 
+            }
+            if(resultError.status === true && resultError.newSession === true){
+              return this.postCitiesWeather(cities);
+            }
+          }
+
           console.log(newCities, "NOVAS CIDADES POSTADAS");
   
           const filteredNewCities = await this.removeInvalidCitiesW(newCities.data);
@@ -39,17 +58,18 @@ export class CitiesWSessionHandlerService {
             }
           }
         } catch (error) {
-          console.error("Erro ao processar as cidades:", error);
+          console.error("Error processing the cities:", error);
         }
       },
       error: (err) => {
-        console.error("Erro na requisição para postCitiesWeather:", err);
+        console.error("Error in the request to postCitiesWeather:", err);
       }
     });
   }
 
 
   postCitiesWeatherPublic(cities: string[]) {
+    console.log("DESLOGADO CITIES");
     this.citiesWeatherService.requestCitiesWeatherPublic(cities).subscribe({
       next: async (newCities: any) => {
         try {

@@ -32,6 +32,7 @@ export class ScNewComponent implements AfterViewChecked {
     const cityArray = [this.inputNewCity.trim()];
     console.log("submit city", cityArray);
     const isLogged = await firstValueFrom(this.authService.getIsLogged())
+    console.log(isLogged);
     if(isLogged){ 
       this.citiesWHandler.postCitiesWeather(cityArray);
     }else{
