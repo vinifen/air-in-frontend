@@ -15,7 +15,7 @@ console.log("RODOU AUTH GUARD", isInitialized);
    
     const checkUser = await userSession.checkUserSession();
     console.log(checkUser, "RODOU QUANDO NAO ESTIVER INICIALIZADO");
-    if (!checkUser.status) {
+    if (!checkUser.stStatus) {
       return true; 
     }
     return router.parseUrl('/'); 

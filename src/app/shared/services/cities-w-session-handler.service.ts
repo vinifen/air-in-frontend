@@ -33,18 +33,18 @@ export class CitiesWSessionHandlerService {
       next: async (newCities: any) => {
         try {
 
-          if(!newCities.status && newCities.data.stStatus === false){
-            console.log("rodou ERROR cITIES");
-            const resultError = await this.userSessionHandlerS.handlerErrorRequest(newCities);
-            if(resultError.status == false && resultError.newSession === false){
-              this.citiesWeatherService.setCitiesData(null);
-              console.error("Unlogged");
-              return 
-            }
-            if(resultError.status === true && resultError.newSession === true){
-              return this.postCitiesWeather(cities);
-            }
-          }
+          // if(!newCities.status && newCities.data.stStatus === false){
+          //   console.log("rodou ERROR cITIES");
+          //   const resultError = await this.userSessionHandlerS.handlerErrorRequest(newCities);
+          //   if(resultError.status == false && resultError.newSession === false){
+          //     this.citiesWeatherService.setCitiesData(null);
+          //     console.error("Unlogged");
+          //     return 
+          //   }
+          //   if(resultError.status === true && resultError.newSession === true){
+          //     return this.postCitiesWeather(cities);
+          //   }
+          // }
 
           console.log(newCities, "NOVAS CIDADES POSTADAS");
   
