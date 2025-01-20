@@ -4,7 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { UsersService } from '../../../../../shared/services/users.service';
 import IUserData from '../../../../../shared/interfaces/IUserData';
-
+import { ActiveSlideNavService } from '../../active-slide-nav.service';
 @Component({
   selector: 'app-sc-account',
   standalone: true,
@@ -30,5 +30,9 @@ export class ScAccountComponent implements OnInit {
       window.location.reload();
       this.authService.setIsLogged(false);
     }
+  }
+
+  async toggleAccountSettings(){
+    
   }
 }

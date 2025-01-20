@@ -21,20 +21,32 @@ export class UserSessionHandlerService {
   async checkUserSession() {
     
     const userResponse: {status: boolean, data: any} = await firstValueFrom(this.userService.requestUser());
-
-    const resultError = await this.handlerErrorRequest(userResponse);
-    if(resultError.status == true && resultError.newSession == true){
-      this.checkUserSession();
-    }
+    const userResponseData = userResponse.data;
+    console.log(userResponse, "USER RESPONSE  ")
+    // const resultError = await this.handlerErrorRequest(userResponse);
+    // if(resultError.status == true && resultError.newSession == true){
+    //   this.checkUserSession();
+    // }
     this.setIsInitialized(true);
-    return resultError;
+    if(userResponse.status && userResponseData.stStatus && userResponseData.content.publicUserID){
+      console.log("LOGADO")
+      this.authService.setIsLogged(true);
+      this.userService.setUserData(userResponseData.content);
+   
+      return userResponseData;
+    }
+    this.authService.setIsLogged(false);
+    
+    return userResponseData;
   }
 
 
   async handlerErrorRequest(userResponse: {status: boolean, data: any} ){
+    console.log("RODOU HANDLER ERROR REQUEST")
     const resultSession: {status: boolean, newSession: boolean} = await this.authService.validateSession(userResponse);
 
     if (resultSession.status == true && resultSession.newSession == true)  {
+      console.log("CERTO DENTRO HANDLER ERROR", resultSession);
       return {status: true, newSession: true}
     }
     
@@ -43,7 +55,7 @@ export class UserSessionHandlerService {
       this.authService.setIsLogged(false);
       this.userService.setUserData(null);
       console.log(this.userService.getUserData().subscribe({next: (v) => console.log(v, "É PRA SER NULL CHECKUSER")}));
-      return {status: false, message: resultSession, newSession: false};
+      return {status: false, message: "Invalid Session", newSession: false};
     }
     console.log(resultSession, userResponse, "initial session  2");
     this.userService.setUserData(userResponse.data.content);

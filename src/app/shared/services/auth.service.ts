@@ -48,7 +48,6 @@ export class AuthService {
   
 
   private async handleInvalidSession(response: any) {
-    this.setIsLogged(false);
     console.log(response, "handle invalid session");
     if (response.data.hasRt == true) {
       
