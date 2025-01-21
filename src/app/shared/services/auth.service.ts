@@ -43,6 +43,7 @@ export class AuthService {
       `${this.apiURL}auth/logout`, {}, {withCredentials: true }
     ).pipe(take(1));
     console.log("asdfasdfLOGOUT2222222", data);
+    this.setIsLogged(false);
     return data;
   }
   

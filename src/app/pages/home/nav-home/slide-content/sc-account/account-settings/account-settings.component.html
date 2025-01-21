@@ -1,0 +1,67 @@
+<div 
+  *ngIf="accountSettingsContent === 'settings'"
+  class="flex w-full h-10 items-center justify-start lg:hidden">
+  <div class="flex items-center justify-around h-full w-full bg-white-50 rounded-xl shadow-sm">      
+    <!-- [ngClass]="{'hidden': accountSettingsContent !== 'settings', 'block lg:hidden': accountSettingsContent === 'settings'}" -->
+    <button 
+      (click)="toggleAccountSettingsContent( 'edit-usnm' )"
+      class="bg-gray-50 text-sm border-2 border-gray-500 border-opacity-20 rounded-xl h-3/4 w-1/4 flex items-center justify-center text-center sm:w-24">
+      <i class="bi bi-person-square text-xl text-primary"></i>            
+    </button>               
+    <button  
+      class="bg-gray-50 text-sm border-2 border-gray-500 border-opacity-20 rounded-xl h-3/4 w-1/4 flex items-center justify-center text-center sm:w-24">
+      <i class="bi bi-box-arrow-in-left text-xl text-primary"></i>
+    </button>
+    <button  
+      class="bg-gray-50 text-sm border-2 border-gray-500 border-opacity-20 rounded-xl h-3/4 w-1/4 flex items-center justify-center text-center sm:w-24">
+      <i class="bi bi-box-arrow-in-left text-xl text-primary"></i>
+    </button>
+
+  </div>    
+</div>
+
+
+<div 
+  *ngIf="accountSettingsContent === 'settings'"
+  class="hidden bg-white-50 w-15/16 h-60 rounded-2xl shadow-sm lg:flex justify-center items-center">
+  <div class="flex flex-col justify-between items-center h-9/10 w-5/6 ">
+
+    <div class="flex items-center justify-center w-full h-1/6 mt-2">
+      <button 
+        (click)="toggleReturnMain()"
+        routerLink="/"
+        class="w-2/6 h-full rounded-xl ">
+        <i class="bi bi-arrow-left text-primary text-base"></i>
+      </button>
+      <h1 class=" text-primary text-base w-4/6 h-full flex items-center justify-start">Account Settings </h1>
+    </div>
+
+    <div class="w-full h-5/6 flex flex-col justify-around items-center mt-4">
+
+      <button 
+        (click)="toggleAccountSettingsContent( 'edit-usnm' )"
+        class="bg-gray-50 border-2 border-gray-500 border-opacity-20 rounded-xl h-10 flex w-full items-center justify-center ">
+        <p class="text-sm">Edit Username</p>
+      </button>
+      <button  
+        (click)="toggleAccountSettingsContent( 'edit-pw' )"
+        class="bg-gray-50 border-2 border-gray-500 border-opacity-20 w-full rounded-xl h-10 flex items-center justify-center">
+        <p class="text-sm">Edit Password</p>
+      </button>
+      <button  
+        (click)="toggleAccountSettingsContent( 'delete-user' )"
+        class="w-full rounded-xl h-10 flex items-center justify-center">
+        <p class="text-sm text-primary">Detele Account</p>
+      </button>
+
+    </div>
+
+  </div>
+</div>
+
+
+<app-account-edit-usnm *ngIf="accountSettingsContent === 'edit-usnm'" class="w-full h-full"></app-account-edit-usnm>
+
+<app-account-edit-pw *ngIf="accountSettingsContent === 'edit-pw'" class="w-full h-full"></app-account-edit-pw>
+
+<app-account-delete-user *ngIf="accountSettingsContent === 'delete-user'" class="w-full h-full"></app-account-delete-user>
