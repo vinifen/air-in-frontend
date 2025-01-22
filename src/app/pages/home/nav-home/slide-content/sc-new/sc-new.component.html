@@ -2,9 +2,9 @@
   <div class="w-full h-10 md:h-12 lg:h-3/6 lg:row-start-3 lg:row-end-5">
     <form 
       (ngSubmit)="onSubmit()" 
-      class="bg-white-50 shadow-sm grid grid-cols-[1fr_auto] h-full w-full rounded-2xl lg:flex lg:flex-col lg:h-36 lg:justify-around items-center lg:w-15/16"
+      class="bg-white-50 flex shadow-sm h-full w-full rounded-2xl lg:flex lg:flex-col lg:h-36 lg:justify-around items-center lg:w-15/16"
     >
-      <div class="col-start-1 flex items-center h-7 rounded-xl justify-center lg:w-full lg:h-auto lg:mt-2">
+      <div class="flex items-center h-7 rounded-xl justify-center w-full ml-2 lg:h-auto lg:mt-2">
         <input 
           #newInput
           [(ngModel)]="inputNewCity"
@@ -14,11 +14,19 @@
           name="new"
           id="new" 
           
-          class="focus:outline-primary h-full rounded-xl mx-3 border-2 bg-gray-50 border-gray-300 w-full  lg:h-9 lg:mx-2"
+          class="focus:outline-primary h-full w-full rounded-xl border-2 bg-gray-50 border-gray-300 lg:mx-2 lg:h-9"
         >
-
       </div>
-      <button type="submit" class="col-start-2 w-14 h-full flex justify-center items-center mr-2 sm:w-20 lg:mr-0 lg:w-full lg:h-auto lg:mb-3">
+      
+      <div *ngIf="successMessage" class="text-green-500 text-sm mb-4">
+        {{ successMessage }}
+      </div>
+  
+      <div *ngIf="errorMessage" class="text-red-500 text-sm mb-4">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="w-14 h-full flex justify-center items-center mr-2 sm:w-20 lg:mr-0 lg:w-full lg:h-auto lg:mb-3">
         <div class="h-7 w-full bg-gray-50 text-sm border-2 border-gray-500 border-opacity-20 rounded-xl flex justify-center items-center lg:h-10 lg:mx-2">
           Add
         </div>

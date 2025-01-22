@@ -52,7 +52,7 @@ export class UsersService {
   }
 
   requestEditUsername(newUsername: string, password: string){
-    const data = this.http.put(
+    const data = this.http.put<{ status: boolean; data: any }>(
       `${this.apiURL}users/username`, {newUsername, password}, { withCredentials: true } 
     ).pipe(take(1));
     return data;

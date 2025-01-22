@@ -27,68 +27,71 @@ export class CitiesWSessionHandlerService {
     })
   }
 
-
-  postCitiesWeather(cities: string[]) {
-    this.citiesWeatherService.requestPostCitiesWeather(cities).subscribe({
-      next: async (newCities: any) => {
-        try {
-
-          // if(!newCities.status && newCities.data.stStatus === false){
-          //   console.log("rodou ERROR cITIES");
-          //   const resultError = await this.userSessionHandlerS.handlerErrorRequest(newCities);
-          //   if(resultError.status == false && resultError.newSession === false){
-          //     this.citiesWeatherService.setCitiesData(null);
-          //     console.error("Unlogged");
-          //     return 
-          //   }
-          //   if(resultError.status === true && resultError.newSession === true){
-          //     return this.postCitiesWeather(cities);
-          //   }
-          // }
-
-          console.log(newCities, "NOVAS CIDADES POSTADAS");
+  postCitiesWeather(cities: string[]): Promise<{ status: boolean; message: string }> {
+    return new Promise((resolve, reject) => {
+      this.citiesWeatherService.requestPostCitiesWeather(cities).subscribe({
+        next: async (newCities: any) => {
+          try {
+            console.log(newCities, "NOVAS CIDADES POSTADAS");
   
-          const filteredNewCities = await this.removeInvalidCitiesW(newCities.data);
+            const filteredNewCities = await this.removeInvalidCitiesW(newCities.data);
   
-          if (filteredNewCities.status && filteredNewCities.data) {
-            const updatedData = await this.updatedCitiesWeatherData(filteredNewCities.data);
-          
-            if (updatedData) {
-              this.citiesWeatherService.setCitiesData(updatedData);
+            if (filteredNewCities.status && filteredNewCities.data) {
+              const updatedData = await this.updatedCitiesWeatherData(filteredNewCities.data);
+  
+              if (updatedData) {
+                this.citiesWeatherService.setCitiesData(updatedData);
+                resolve({ status: true, message: newCities.message || "Success" });
+              }
+            } else {
+              resolve({ status: false, message: newCities.message || "Failed to process cities." });
             }
+          } catch (error) {
+            console.error("Error processing the cities:", error);
+            reject({ status: false, message: newCities.message || "An error occurred while processing cities." });
           }
-        } catch (error) {
-          console.error("Error processing the cities:", error);
+        },
+        error: (err) => {
+          console.error("Error in the request to postCitiesWeather:", err);
+          reject({ status: false, message: err.error?.message || "Failed to request cities weather data." });
         }
-      },
-      error: (err) => {
-        console.error("Error in the request to postCitiesWeather:", err);
-      }
+      });
     });
   }
-
-
-  postCitiesWeatherPublic(cities: string[]) {
-    console.log("DESLOGADO CITIES");
-    this.citiesWeatherService.requestCitiesWeatherPublic(cities).subscribe({
-      next: async (newCities: any) => {
-        try {
-          console.log(newCities, "NOVAS CIDADES")
-          const filteredNewCities = await this.removeInvalidCitiesW(newCities.data);
-
-          if(filteredNewCities.status && filteredNewCities.data){
-            const updatedData = await this.updatedCitiesWeatherData(filteredNewCities.data);
-          
-            if(updatedData){ 
-              this.citiesWeatherService.setCitiesData(updatedData);
+  
+  postCitiesWeatherPublic(cities: string[]): Promise<{ status: boolean; message: string }> {
+    return new Promise((resolve, reject) => {
+      console.log("DESLOGADO CITIES");
+      this.citiesWeatherService.requestCitiesWeatherPublic(cities).subscribe({
+        next: async (newCities: any) => {
+          try {
+            console.log(newCities, "NOVAS CIDADES");
+  
+            const filteredNewCities = await this.removeInvalidCitiesW(newCities.data);
+  
+            if (filteredNewCities.status && filteredNewCities.data) {
+              const updatedData = await this.updatedCitiesWeatherData(filteredNewCities.data);
+  
+              if (updatedData) {
+                this.citiesWeatherService.setCitiesData(updatedData);
+                resolve({ status: true, message: newCities.message || "Success" });
+              }
+            } else {
+              resolve({ status: false, message: newCities.message || "Failed to process public cities." });
             }
+          } catch (error) {
+            console.error("Erro ao atualizar os dados:", error);
+            reject({ status: false, message: newCities.message || "An error occurred while processing public cities." });
           }
-        } catch (error) {
-          console.error("Erro ao atualizar os dados:", error);
+        },
+        error: (err) => {
+          console.error("Error in the request to postCitiesWeatherPublic:", err);
+          reject({ status: false, message: err.error?.message || "Failed to request public cities weather data." });
         }
-      }
-    })
+      });
+    });
   }
+  
 
 
   private async removeInvalidCitiesW(cities: ICitiesData[] ){

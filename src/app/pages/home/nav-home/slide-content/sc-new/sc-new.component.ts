@@ -16,6 +16,8 @@ import { CitiesWSessionHandlerService } from '../../../../../shared/services/cit
 export class ScNewComponent implements AfterViewChecked {
   @ViewChild('newInput') searchInput!: ElementRef;
   inputNewCity: string = "";
+  errorMessage = "";
+  successMessage = "";
 
   constructor(
     private citiesWeatherService: CitiesWeatherService, 
@@ -24,22 +26,51 @@ export class ScNewComponent implements AfterViewChecked {
   ) {}
 
   async onSubmit() {
+    this.errorMessage = ""; // Limpa mensagens anteriores
+    this.successMessage = ""; // Limpa mensagens anteriores
+  
     if (!this.inputNewCity.trim()) {
+      this.errorMessage = "City name cannot be empty.";
       console.log("City name is empty");
       return;
     }
-
+  
     const cityArray = [this.inputNewCity.trim()];
     console.log("submit city", cityArray);
-    const isLogged = await firstValueFrom(this.authService.getIsLogged())
-    console.log(isLogged);
-    if(isLogged){ 
-      this.citiesWHandler.postCitiesWeather(cityArray);
-    }else{
-      this.citiesWHandler.postCitiesWeatherPublic(cityArray);
+  
+    try {
+      const isLogged = await firstValueFrom(this.authService.getIsLogged());
+      console.log("User logged in:", isLogged);
+  
+      if (isLogged) {
+        const resultPost = await this.citiesWHandler.postCitiesWeather(cityArray);
+  
+        if (resultPost.status) {
+          this.successMessage = "City added successfully!";
+          console.log("City added successfully:", resultPost.message);
+        } else {
+          this.errorMessage = resultPost.message || "Failed to add the city.";
+          console.error("Error adding city:", resultPost.message);
+        }
+      } else {
+        const resultPostPublic = await this.citiesWHandler.postCitiesWeatherPublic(cityArray);
+  
+        if (resultPostPublic.status) {
+          this.successMessage = resultPostPublic.message || "City added successfully (public mode)!";
+          console.log("City added successfully (public):", resultPostPublic.message);
+        } else {
+          this.errorMessage = resultPostPublic.message || "Failed to add the city (public).";
+          console.error("Error adding city (public):", resultPostPublic.message);
+        }
+      }
+    } catch (error: any) {
+      this.errorMessage = error.message || "An unexpected error occurred. Please try again.";
+      console.error("Unexpected error:", error);
+    } finally {
+      this.inputNewCity = ""; 
     }
-    this.inputNewCity = ""; 
   }
+  
 
   ngAfterViewChecked(): void {
     if (this.searchInput?.nativeElement) {
