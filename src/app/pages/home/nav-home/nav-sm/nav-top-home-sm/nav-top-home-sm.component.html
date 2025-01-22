@@ -1,5 +1,11 @@
 <nav class="flex items-center justify-center flex-wrap">
-  <div  class="bg-white-50 h-14 w-full mt-1 flex items-center justify-center rounded-2xl md:h-16">
+
+  <div 
+    [ngClass]="{
+      'rounded-bl-none rounded-br-none rounded-tr-2xl rounded-tl-2xl': activeSlide$ === 'account',
+      'rounded-2xl': activeSlide$ !== 'account'
+    }"
+    class="bg-white-50 h-14 w-full mt-1 flex items-center justify-center md:h-16">
     <div 
       class="flex justify-between items-center mx-2 h-full w-11/12 md:w-5/6"
       [ngClass]="{'hidden': activeSlide$ === 'new', 'block': activeSlide$ !== 'new'}"
@@ -26,36 +32,25 @@
       
 
       <app-site-title [ngClass]="{
-        'hidden': activeSlide$ === 'new' || activeSlide$ === 'account' || activeSlide$ === 'search-bar',
+        'hidden': activeSlide$ === 'new' || activeSlide$ === 'search-bar' || activeSlide$ === 'account',
         'block': activeSlide$ !== 'new' && activeSlide$ !== 'account' && activeSlide$ !== 'search-bar'
       }"></app-site-title>      
      
-      
 
-      <div
-        class="grid grid-cols-[1fr_auto] gap-2 h-full"
-        [ngClass]="{'w-4/5 sm:w-3/5': activeSlide$ === 'account', 'w-auto': activeSlide$ !== 'account'}"
+      <button 
+        routerLink="/authentication"
+        (click)="toggleSlide('account')" 
+        [ngClass]="{'bg-white-50 shadow-sm': activeSlide$ === 'account', 'bg-transparent': activeSlide$ !== 'account'}"
+        class="h-10 w-10 rounded-xl"
       >
-        <app-sc-account 
-          class="h-full col-start-1 w-full"
-          [ngClass]="{'hidden': activeSlide$ !== 'account', 'block': activeSlide$ === 'account'}"
-        ></app-sc-account>
-        <div class="flex items-center col-start-2">
-          <button 
-            routerLink="/authentication"
-            (click)="toggleSlide('account')" 
-            [ngClass]="{'bg-white-50 shadow-sm': activeSlide$ === 'account', 'bg-transparent': activeSlide$ !== 'account'}"
-            class="h-10 w-10 rounded-xl"
-          >
-            <i class="bi bi-person-fill text-primary text-3xl"></i>
-          </button>
-        </div>
-      </div>
+        <i class="bi bi-person-fill text-primary text-3xl"></i>
+      </button>
+      
 
     </div>
 
     <app-sc-new [ngClass]="{'hidden': activeSlide$ !== 'new', 'block': activeSlide$ === 'new'}" class="w-15/16 xs:w-5/6"></app-sc-new>
 
   </div>
-  
+  <app-slide-nav-top [activeSlide$]="activeSlide$" *ngIf="activeSlide$" class="w-full"></app-slide-nav-top>
 </nav>

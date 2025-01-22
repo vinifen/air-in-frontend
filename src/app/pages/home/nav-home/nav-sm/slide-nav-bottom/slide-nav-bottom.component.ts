@@ -17,9 +17,8 @@ import { ScCreditsComponent } from '../../slide-content/sc-credits/sc-credits.co
 })
 export class SlideNavBottomComponent {
   @Input() activeSlide$: string | null = null;
-  constructor(){
-    console.log(this.activeSlide$);
-  }
+  constructor(){}
+  
   getComponent(){
     switch(this.activeSlide$){
       case 'settings':
