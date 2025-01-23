@@ -44,8 +44,16 @@ export class CitiesWeatherService {
     return this.http.post(`${this.apiURL}cities-weather/public`, cityNames).pipe(take(1));
   }
 
-  deleteCity(){
-
+  deleteCities(cities: string[]){
+    const data = this.http.delete<{ status: boolean; data: any }>(
+      `${this.apiURL}cities-weather`, 
+      { 
+        body: { cities }, 
+        withCredentials: true 
+      }
+    ).pipe(take(1));
+    
+    return data;
   }
 
   // requestPostCitiesWeather(cityNames: string[]) {

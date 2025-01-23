@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CitiesWSessionHandlerService } from './cities-w-session-handler.service';
+import { CitiesWSessionHandlerService } from '../cities-w-session-handler.service';
 
 describe('CitiesWSessionHandlerService', () => {
   let service: CitiesWSessionHandlerService;

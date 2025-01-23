@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../shared/services/auth.service';
 import { CitiesWSessionHandlerService } from '../../../shared/services/cities-w-session-handler.service';
@@ -7,6 +7,8 @@ import { CitiesWeatherService } from '../../../shared/services/cities-weather.se
 import { ActiveSlideNavService } from '../nav-home/active-slide-nav.service';
 import { DeleteCitiesWModeService } from '../delete-cities-w-mode.service';
 import ICitiesData from '../../../shared/interfaces/ICitiesData';
+import { InitializeService } from '../../../shared/services/initialize.service';
+
 
 
 @Component({
@@ -16,13 +18,14 @@ import ICitiesData from '../../../shared/interfaces/ICitiesData';
   templateUrl: './main-home.component.html',
   styleUrls: ['./main-home.component.css'] 
 })
-export class MainHomeComponent implements OnInit {
+export class MainHomeComponent implements OnInit{
   islogged$: boolean = false;
   weatherData$: any;
   userdata: any;
   activeSlide$: string | null = null;
   isDeleteCitiesWModeOn$: boolean = false;
   citiesToDelete: string[] = [];
+  isInitialized$: boolean = false;
 
   constructor(
     private authService: AuthService, 
@@ -30,6 +33,7 @@ export class MainHomeComponent implements OnInit {
     private citiesWHandler: CitiesWSessionHandlerService, 
     private citiesWeatherService: CitiesWeatherService,
     private deleteCitiesWService: DeleteCitiesWModeService,
+    private initializeService: InitializeService
   ) {}
 
   async ngOnInit(){
@@ -55,12 +59,21 @@ export class MainHomeComponent implements OnInit {
       }
     });
 
+    
     this.deleteCitiesWService.getIsDeleteCitiesW().subscribe({
       next: (value) => {
         this.isDeleteCitiesWModeOn$ = value;
       }
     })
+
+    this.initializeService.getIsInitialized().subscribe({
+      next: (value) => {
+        this.isInitialized$ = value;
+        console.log(this.isInitialized$, "IS INITIALIZED MAIN HOME")
+      }
+    })
   }
+
 
   selectCitiesToDelete(cityName: string) {
     if (!this.citiesToDelete.includes(cityName)) {

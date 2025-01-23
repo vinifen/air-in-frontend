@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { DeleteCitiesWModeService } from '../../../delete-cities-w-mode.service';
 import { AuthService } from '../../../../../shared/services/auth.service';
 import { firstValueFrom } from 'rxjs';
-
+import { CitiesWeatherService } from '../../../../../shared/services/cities-weather.service';
 
 
 @Component({
@@ -17,8 +17,7 @@ import { firstValueFrom } from 'rxjs';
 })
 export class ScSettingsComponent implements OnInit{
   isDeleteCitiesWModeOn$ = false;
-  citiesToDelete: string[] = [];
-  constructor(private authService: AuthService, private deleteCitiesWService: DeleteCitiesWModeService){}
+  constructor(private authService: AuthService, private deleteCitiesWService: DeleteCitiesWModeService, private citiesWService: CitiesWeatherService){}
 
   ngOnInit(): void {
     this.deleteCitiesWService.getIsDeleteCitiesW().subscribe({
@@ -30,13 +29,19 @@ export class ScSettingsComponent implements OnInit{
 
   async submitDeleteCities(){
     const isLogged = await firstValueFrom (this.authService.getIsLogged());
-    this.citiesToDelete = this.deleteCitiesWService.getCitiesToDelete();
-    if(this.citiesToDelete.length > 0){
-      if(!isLogged){
-        console.log(this.citiesToDelete);
-        this.deleteCitiesWService.removeSessionCities(this.citiesToDelete);
+    const citiesToDelete = this.deleteCitiesWService.getCitiesToDelete();
+    console.log(citiesToDelete, "CITIES TO DELETE SUBMIT")
+    if(citiesToDelete.length > 0){
+      if(isLogged){
+        console.log(citiesToDelete, "aa");
+        const resultDeleteCities = await firstValueFrom(this.citiesWService.deleteCities(citiesToDelete));
+        if(resultDeleteCities.status){
+          this.deleteCitiesWService.removeSessionCities(citiesToDelete);
+        }else{
+          console.error(resultDeleteCities.data.message);
+        } 
       }else{
-        
+        this.deleteCitiesWService.removeSessionCities(citiesToDelete);
       }
      
     }

@@ -3,13 +3,15 @@ import { inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { UserSessionHandlerService } from '../services/user-session-handler.service';
+import { InitializeService } from '../services/initialize.service';
 
 export const authGuard: CanActivateFn = async (route, state) => {
   const authService = inject(AuthService);
+  const initializeService = inject(InitializeService)
   const userSession = inject(UserSessionHandlerService);
   const router = inject(Router);
   
-  const isInitialized = await firstValueFrom(userSession.getIsInitialized());
+  const isInitialized = await firstValueFrom(initializeService.getIsInitialized());
 console.log("RODOU AUTH GUARD", isInitialized);
   if (!isInitialized) {
    
