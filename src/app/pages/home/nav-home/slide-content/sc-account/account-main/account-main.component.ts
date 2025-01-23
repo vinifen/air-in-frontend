@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import IUserData from '../../../../../../shared/interfaces/IUserData';
 import { AuthService } from '../../../../../../shared/services/auth.service';
@@ -11,13 +11,21 @@ import { UsersService } from '../../../../../../shared/services/users.service';
   templateUrl: './account-main.component.html',
   styleUrls: ['./account-main.component.css']
 })
-export class AccountMainComponent {
+export class AccountMainComponent implements OnInit {
   userData: IUserData | null = null;
   isAccountSettingsActive: boolean = false;
 
   @Output() accountSettingsToggled = new EventEmitter<boolean>();
 
   constructor(private authService: AuthService, private userService: UsersService) {}
+
+  ngOnInit(): void {
+    this.userService.getUserData().subscribe({
+      next: (value) =>{
+        this.userData = value;
+      }
+    })
+  }
 
   async toggleLogout() {
     const isLogged = await firstValueFrom(this.authService.getIsLogged());

@@ -1,19 +1,50 @@
-<div class="w-full h-14 flex justify-center items-center md:h-16 lg:flex-none lg:justify-normal lg:items-center lg:grid lg:grid-rows-6 lg:h-full lg:w-72">
-  <div class="w-full h-10 md:h-12 lg:h-3/6 lg:row-start-3 lg:row-end-5">
+<div class="flex w-full h-auto items-center justify-center lg:hidden">
+  <div class="flex items-center justify-center h-full w-full mb-2 mx-2 bg-white-50 rounded-xl shadow-sm sm:w-5/6">      
     <form 
       (ngSubmit)="onSubmit()" 
-      class="bg-white-50 flex shadow-sm h-full w-full rounded-2xl lg:flex lg:flex-col lg:h-36 lg:justify-around items-center lg:w-15/16"
+      class="w-5/6 h-auto flex flex-col justify-center items-start mt-2">
+      
+      <input 
+        #newInput
+        [(ngModel)]="inputNewCity"
+        name="new"
+        placeholder="Search for add new citys" 
+        type="text" 
+        id="new"
+        class="focus:outline-primary rounded-xl mb-1 bg-gray-50 border-2 h-9 border-gray-500 border-opacity-20 w-full">
+
+      <div *ngIf="successMessage" class="text-green-500 text-xs mb-1">
+        {{ successMessage }}
+      </div>
+  
+      <div *ngIf="errorMessage" class="text-red-500 text-xs mb-1">
+        {{ errorMessage }}
+      </div>
+      <button 
+        type="submit"
+        class="bg-gray-50 border-2 border-gray-500 border-opacity-20 mb-2 mt-1 rounded-xl h-10 flex w-full items-center justify-center ">
+        <p class="text-xs text-primary">Submit</p>
+      </button>
+    </form>
+
+  </div>    
+</div>
+
+<!-- Layout para telas grandes -->
+<div class="hidden lg:flex lg:justify-center lg:items-center lg:h-full lg:w-full">
+  <div class="lg:w-80 lg:h-3/6 lg:flex lg:items-center lg:justify-center lg:flex-col">
+    <form 
+      (ngSubmit)="onSubmit()" 
+      class="bg-white-50 flex flex-col shadow-sm h-36 justify-around items-center w-15/16 rounded-2xl"
     >
-      <div class="flex items-center h-7 rounded-xl justify-center w-full ml-2 lg:h-auto lg:mt-2">
+      <div class="flex items-center h-7 rounded-xl justify-center w-full lg:ml-0 lg:h-auto lg:mt-2">
         <input 
           #newInput
           [(ngModel)]="inputNewCity"
           name="new"
           placeholder="Search for add new citys" 
           type="text" 
-          name="new"
           id="new" 
-          
           class="focus:outline-primary h-full w-full rounded-xl border-2 bg-gray-50 border-gray-300 lg:mx-2 lg:h-9"
         >
       </div>
@@ -26,13 +57,11 @@
         {{ errorMessage }}
       </div>
 
-      <button type="submit" class="w-14 h-full flex justify-center items-center mr-2 sm:w-20 lg:mr-0 lg:w-full lg:h-auto lg:mb-3">
-        <div class="h-7 w-full bg-gray-50 text-sm border-2 border-gray-500 border-opacity-20 rounded-xl flex justify-center items-center lg:h-10 lg:mx-2">
+      <button type="submit" class="w-full h-auto flex justify-center items-center lg:mb-3">
+        <div class="h-10 w-full bg-gray-50 text-sm border-2 border-gray-500 border-opacity-20 rounded-xl flex justify-center items-center lg:mx-2">
           Add
         </div>
       </button>
     </form>
   </div>
 </div>
-
-

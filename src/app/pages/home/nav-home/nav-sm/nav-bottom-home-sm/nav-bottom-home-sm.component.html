@@ -13,13 +13,13 @@
         [ngClass]="{'bg-white shadow-sm': activeSlide$ === 'settings', 'bg-transparent': activeSlide$ !== 'settings'}"
         class="h-10 w-10 rounded-2xl"
       >
-        <i class="bi bi-menu-button-wide text-primary text-2xl"></i>
+        <i class="bi bi-menu-button-wide text-primary text-xl"></i>
       </button>
       
       <button 
         (click)="toggleSlide('new')" 
         [ngClass]="{'bg-white shadow-sm': activeSlide$ === 'new', 'bg-transparent': activeSlide$ !== 'new'}"
-        class="w-12 h-12 border-2 border-primary border-dotted flex items-center justify-center text-3xl text-primary rounded-2xl"
+        class="w-12 h-12 border-2 border-primary border-dotted flex items-center justify-center text-2xl text-primary rounded-2xl"
       >
         <i class="bi bi-plus"></i>
       </button>
@@ -28,7 +28,7 @@
         [ngClass]="{'bg-white shadow-sm': activeSlide$ === 'credits', 'bg-transparent': activeSlide$ !== 'credits'}"
         class="h-10 w-10 rounded-xl"
       >
-        <i class="bi bi-globe text-primary text-2xl"></i>
+        <i class="bi bi-globe text-primary text-xl"></i>
       </button>
     </div>
   </div>
