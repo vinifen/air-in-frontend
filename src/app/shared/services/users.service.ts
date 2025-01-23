@@ -40,7 +40,7 @@ export class UsersService {
   }
 
   requestDeleteUser(password: string){
-    const data = this.http.delete(
+    const data = this.http.delete<{ status: boolean; data: any }>(
       `${this.apiURL}users`, 
       { 
         body: { password }, 
@@ -59,7 +59,7 @@ export class UsersService {
   }
 
   requestEditPassword(newPassword: string, oldPassword: string){
-    const data = this.http.put(
+    const data = this.http.put<{ status: boolean; data: any }>(
       `${this.apiURL}users/password`, {newPassword, oldPassword}, { withCredentials: true } 
     ).pipe(take(1));
     return data;

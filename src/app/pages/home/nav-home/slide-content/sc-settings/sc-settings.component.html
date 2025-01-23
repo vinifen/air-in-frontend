@@ -1,14 +1,8 @@
-<div>
-  <button (click)="toggleDelete()">Delete User</button>
-  <input [(ngModel)]="inputPasswordDelete" type="text">
-</div>
-<div>
-  <button (click)="toggleUpdateUsername()">Edit Username</button>
-  <input [(ngModel)]="inputNewUsername" type="text" placeholder="new username"> 
-  <input [(ngModel)]="inputPasswordEditUsername" type="text" placeholder="password editUsername"> 
-</div>
-<div>
-  <button (click)="toggleUpdatePassword()">Edit Password</button>
-  <input [(ngModel)]="inputNewPasswordAlterPassword" type="text" placeholder="new password"> 
-  <input [(ngModel)]="inputOldPasswordAlterPassword" type="text" placeholder="old password"> 
+<div class="h-full w-80">
+  <div class="bg-white-50">
+    <button (click)="toggleDeleteMode()" class="">
+      <i class="bi bi-trash"></i>
+    </button>
+    <button (click)="submitDeleteCities()">Delete</button>
+  </div>
 </div>

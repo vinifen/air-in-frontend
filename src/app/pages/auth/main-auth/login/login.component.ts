@@ -40,7 +40,6 @@ export class LoginComponent {
     }
 
     this.isFormValid = !this.errorMessage;
-    console.log(this.isFormValid);
   }
 
   
