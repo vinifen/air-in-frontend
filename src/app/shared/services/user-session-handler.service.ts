@@ -10,34 +10,24 @@ export class UserSessionHandlerService {
   isInitialized$ = new BehaviorSubject<boolean>(false);
   constructor(private authService: AuthService, private userService: UsersService) {}
 
-  setIsInitialized(value: boolean){
-    this.isInitialized$.next(value);
-  }
-
-  getIsInitialized(){
-    return this.isInitialized$.asObservable();
-  }
-
   async checkUserSession() {
-    
-    const userResponse: {status: boolean, data: any} = await firstValueFrom(this.userService.requestUser());
-    const userResponseData = userResponse.data;
-    console.log(userResponse, "USER RESPONSE  ")
-    // const resultError = await this.handlerErrorRequest(userResponse);
-    // if(resultError.status == true && resultError.newSession == true){
-    //   this.checkUserSession();
-    // }
-    this.setIsInitialized(true);
-    if(userResponse.status && userResponseData.stStatus && userResponseData.content.publicUserID){
-      console.log("LOGADO")
-      this.authService.setIsLogged(true);
-      this.userService.setUserData(userResponseData.content);
-   
+    try {
+      const userResponse: { status: boolean, data: any } = await firstValueFrom(this.userService.requestUser());
+      const userResponseData = userResponse.data;
+      console.log(userResponse, "USER RESPONSE");
+  
+      if (userResponse.status && userResponseData.stStatus && userResponseData.content.publicUserID) {
+        console.log("LOGADO");
+        this.authService.setIsLogged(true);
+        this.userService.setUserData(userResponseData.content);
+        return userResponseData;
+      }
+      this.authService.setIsLogged(false);
       return userResponseData;
+    } catch (error) {
+      console.error('Error checking user session:', error);
+      throw error;
     }
-    this.authService.setIsLogged(false);
-    
-    return userResponseData;
   }
 
 

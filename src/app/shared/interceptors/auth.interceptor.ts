@@ -1,7 +1,8 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { catchError, throwError, from, switchMap, tap } from 'rxjs';
+import { catchError, throwError, from, switchMap, tap, finalize } from 'rxjs';
 import { inject } from '@angular/core';
 import { UserSessionHandlerService } from '../services/user-session-handler.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   console.log('INTERCEPTOR ACTIVATED');
@@ -21,9 +22,10 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     return next(req);
   }
 
+  const spinner = inject(NgxSpinnerService);
+  spinner.show();
+  
   const userSessionHandler = inject(UserSessionHandlerService);
-
-  console.log('Protected route detected, adding authentication logic...');
 
   return next(req).pipe(
     tap((response: any) => {
@@ -48,13 +50,14 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
           })
         );
       }
-
       return from(Promise.resolve(response)); 
     }),
     catchError((error) => {
       console.error('Error caught in the interceptor:', error);
-
       return throwError(() => error);
+    }),
+    finalize(() => {
+      spinner.hide();
     })
   );
 };

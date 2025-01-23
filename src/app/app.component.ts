@@ -5,11 +5,13 @@ import { AuthService } from './shared/services/auth.service';
 import { UserSessionHandlerService } from './shared/services/user-session-handler.service';
 import { CitiesWeatherService } from './shared/services/cities-weather.service';
 import { CitiesWSessionHandlerService } from './shared/services/cities-w-session-handler.service';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { InitializeService } from './shared/services/initialize.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NgxSpinnerModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -21,19 +23,20 @@ export class AppComponent implements OnInit {
     private userService: UsersService,
     private authService: AuthService,
     private handlerCitiesWeatherSession: CitiesWSessionHandlerService,
-    private citiesWeatherService: CitiesWeatherService
+    private citiesWeatherService: CitiesWeatherService,
+    private initializeService: InitializeService
   ){}
 
-  ngOnInit() {
+  async ngOnInit() {
     
-  
+    await this.initializeService.startApp();
+    this.initializeService.getIsInitialized().subscribe({next: (value) => {console.log("IS INITIZATED", value)}})
     console.log("RODOU APP.ts ")
-    this.handleUserSession.checkUserSession();
-    const data = this.handlerCitiesWeatherSession.checkCities();
+    
     this.citiesWeatherService.getCitiesData().subscribe({
       next: (value) => { console.log(value, "CITIES VALUE") }
     });
-    console.log(data, "CHECK HANDLER APP.ts");
+  
     this.userService.getUserData().subscribe({ next: (value) => { console.log(value, "USER VALUE") } });
     this.authService.getIsLogged().subscribe({ next: (value) => { console.log(value, "ISLOGGED VALUE") } });
 

@@ -57,10 +57,8 @@ export class AccountEditPwComponent {
     this.successMessage = '';
 
     try {
-      const result = await firstValueFrom(
-        this.userService.requestEditPassword(this.inputNewPassword, this.inputPassword)
-      );
-
+      const result = await firstValueFrom(this.userService.requestEditPassword(this.inputNewPassword, this.inputPassword));
+      
       if (result && result.status) {
         this.successMessage = result.data.message || 'Password updated successfully!';
         setTimeout(() => {
