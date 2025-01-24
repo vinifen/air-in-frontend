@@ -8,15 +8,17 @@ import ICitiesData from '../../shared/interfaces/ICitiesData';
 })
 export class DeleteCitiesWModeService {
   private weatherData: ICitiesData[] | null = null;
-  private citiesToDelete: string[] = [];
+  private citiesToDelete = new BehaviorSubject<string[]>([]);
   private isDeleteCitiesWModeOn = new BehaviorSubject<boolean>(false);
   constructor(private citiesWService: CitiesWeatherService) {}
 
- 
-
   setCitiesToDelete(cities: string []){
-    this.citiesToDelete = cities;
+    this.citiesToDelete.next(cities);
     console.log(this.citiesToDelete);
+  }
+
+  getCitiesToDelete(){
+    return this.citiesToDelete.asObservable();
   }
 
   async removeSessionCities(citiesRemoved: string[]) {
@@ -28,10 +30,6 @@ export class DeleteCitiesWModeService {
       console.log(newWeatherData, "NEW WEATHER DATA");
       this.citiesWService.setCitiesData(newWeatherData);
     }
-  }
-
-  getCitiesToDelete(){
-    return this.citiesToDelete;
   }
 
   setIsDeleteCitiesW(value: boolean){

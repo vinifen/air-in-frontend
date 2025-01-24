@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { UsersService } from '../../../../../shared/services/users.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DeleteCitiesWModeService } from '../../../delete-cities-w-mode.service';
@@ -15,7 +14,7 @@ import { CitiesWeatherService } from '../../../../../shared/services/cities-weat
   templateUrl: './sc-settings.component.html',
   styleUrl: './sc-settings.component.css'
 })
-export class ScSettingsComponent implements OnInit{
+export class ScSettingsComponent implements OnInit, OnDestroy{
   isDeleteCitiesWModeOn$ = false;
   constructor(private authService: AuthService, private deleteCitiesWService: DeleteCitiesWModeService, private citiesWService: CitiesWeatherService){}
 
@@ -29,7 +28,7 @@ export class ScSettingsComponent implements OnInit{
 
   async submitDeleteCities(){
     const isLogged = await firstValueFrom (this.authService.getIsLogged());
-    const citiesToDelete = this.deleteCitiesWService.getCitiesToDelete();
+    const citiesToDelete = await firstValueFrom (this.deleteCitiesWService.getCitiesToDelete());
     console.log(citiesToDelete, "CITIES TO DELETE SUBMIT")
     if(citiesToDelete.length > 0){
       if(isLogged){
@@ -45,9 +44,17 @@ export class ScSettingsComponent implements OnInit{
       }
      
     }
+    this.deleteCitiesWService.setCitiesToDelete([]);
   }
 
   toggleDeleteMode(){
+    this.deleteCitiesWService.setCitiesToDelete([]);
     this.deleteCitiesWService.setIsDeleteCitiesW(!this.isDeleteCitiesWModeOn$);
+  }
+
+  ngOnDestroy(): void {
+    console.log("destruiu")
+    // Chama toggleReturnSettings quando o componente for destruído
+    this.toggleDeleteMode();
   }
 }
