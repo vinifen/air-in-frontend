@@ -72,6 +72,10 @@ export class MainHomeComponent implements OnInit{
         console.log(this.isInitialized$, "IS INITIALIZED MAIN HOME")
       }
     })
+
+    this.deleteCitiesWService.getCitiesToDelete().subscribe({
+      next: (value) => {this.citiesToDelete = value}
+    })
   }
 
 
@@ -79,6 +83,10 @@ export class MainHomeComponent implements OnInit{
     if (!this.citiesToDelete.includes(cityName)) {
       this.citiesToDelete.push(cityName);
       this.deleteCitiesWService.setCitiesToDelete(this.citiesToDelete);
+    }else{
+      console.log(this.citiesToDelete, "ANTES")
+      this.citiesToDelete = this.citiesToDelete.filter(city => cityName !== city)
+      console.log(this.citiesToDelete, "DEPOIS")
     }
   }
 

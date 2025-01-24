@@ -3,20 +3,41 @@
     <div class="h-full w-full relative">
       <div class="absolute top-0 h-full w-full overflow-y-auto">
 
-        <div *ngIf="weatherData$" class="flex flex-wrap justify-start items-start w-full">
+        <div *ngIf="weatherData$" class="flex flex-wrap justify-start items-start w-full ml-1">
           <div
             *ngFor="let ctWtData of weatherData$; let i = index"
-            class="w-2/4 md:w-2/6 h-80"
-            [ngClass]="{'lg:w-1/4': !activeSlide$, 'lg:w-2/4': !!activeSlide$}"
+            class="w-2/4 md:w-3/6 lg:w-1/4 xl:w-1/6 h-44 mb-2"
+            [ngClass]="{
+              'lg:w-2/4': !!activeSlide$,
+              'xl:w-2/6': !!activeSlide$
+            }"
             (click)="isDeleteCitiesWModeOn$ ? selectCitiesToDelete(ctWtData.content.name) : null"
-
           >
-            <div class="bg-white-50 mr-2 h-full">
-              <p> {{ ctWtData.content.name }} </p>
-              <p> {{ ctWtData.content.weather[0].description }} </p>
-              <p> {{ ctWtData.content.main.temp }} </p>
+            <div class="bg-white-50 rounded-2xl h-full mr-2 shadow-md"
+            [ngClass]="{
+              'shadow-sm ring-2 ring-blue-200 ring-opacity-50': isDeleteCitiesWModeOn$,
+              'shadow-sm ring-2 ring-red-200': isDeleteCitiesWModeOn$ && citiesToDelete.includes(ctWtData.content.name)
+            }">
+              <div class="p-2 flex flex-col justify-around h-full">
+                <div class="flex text-sm text-primary">
+                  <p>{{ ctWtData.content.name }}</p>
+                  <p>-</p>
+                  <p>{{ ctWtData.content.sys.country }}</p>
+                </div>
+
+                <p class="text-lg text-center from-neutral-700 text-primary mb-1">
+                  {{ ctWtData.content.weather[0].description }}
+                </p>
+
+                <div class="text-sm text-gray-500">
+                  <p>Temp: {{ ctWtData.content.main.temp }}°C</p>
+                  <p>Sensation: {{ ctWtData.content.main.feels_like }}°C</p>
+                  <p>Wind Speed: {{ ctWtData.content.wind.speed }}</p>
+                </div>
+              </div>
             </div>
           </div>
+
         </div>
 
         <div *ngIf="(!weatherData$ || weatherData$.length === 0) && isInitialized$" class="flex justify-center items-center h-full w-full">

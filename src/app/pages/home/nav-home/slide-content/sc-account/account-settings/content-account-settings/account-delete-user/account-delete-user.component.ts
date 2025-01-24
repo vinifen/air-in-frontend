@@ -37,7 +37,7 @@ export class AccountDeleteUserComponent {
 
   ngOnInit(): void {
     console.log('INICIO EDIT PASSWORD');
-    this.titleContentService.setTitleContent('New Password');
+    this.titleContentService.setTitleContent('Delete Account');
   }
 
   async onSubmit() {
