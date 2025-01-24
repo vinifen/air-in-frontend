@@ -5,56 +5,34 @@ import { DeleteCitiesWModeService } from '../../../delete-cities-w-mode.service'
 import { AuthService } from '../../../../../shared/services/auth.service';
 import { firstValueFrom } from 'rxjs';
 import { CitiesWeatherService } from '../../../../../shared/services/cities-weather.service';
-
+import { DeleteCitiesComponent } from './delete-cities/delete-cities.component';
+import { SettingsMainComponent } from './settings-main/settings-main.component';
+import { TitleContentService } from '../../title-content.service';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-sc-settings',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, DeleteCitiesComponent, SettingsMainComponent],
   templateUrl: './sc-settings.component.html',
   styleUrl: './sc-settings.component.css'
 })
-export class ScSettingsComponent implements OnInit, OnDestroy{
-  isDeleteCitiesWModeOn$ = false;
-  constructor(private authService: AuthService, private deleteCitiesWService: DeleteCitiesWModeService, private citiesWService: CitiesWeatherService){}
+export class ScSettingsComponent implements OnInit{
+  isLgScreen: boolean =false;
+  settingsContent: string = "settings-main";
+  isDeleteCitiesWModeOn$: boolean = false;
 
+  constructor(private breakpointObserver: BreakpointObserver,private deleteCitiesWService: DeleteCitiesWModeService){}
+  
   ngOnInit(): void {
+    this.breakpointObserver.observe(['(min-width: 1024px)']).subscribe((result) => {
+      this.isLgScreen = result.matches;
+    });
+
     this.deleteCitiesWService.getIsDeleteCitiesW().subscribe({
       next: (value) => {
         this.isDeleteCitiesWModeOn$ = value;
       }
     })
-  }
-
-  async submitDeleteCities(){
-    const isLogged = await firstValueFrom (this.authService.getIsLogged());
-    const citiesToDelete = await firstValueFrom (this.deleteCitiesWService.getCitiesToDelete());
-    console.log(citiesToDelete, "CITIES TO DELETE SUBMIT")
-    if(citiesToDelete.length > 0){
-      if(isLogged){
-        console.log(citiesToDelete, "aa");
-        const resultDeleteCities = await firstValueFrom(this.citiesWService.deleteCities(citiesToDelete));
-        if(resultDeleteCities.status){
-          this.deleteCitiesWService.removeSessionCities(citiesToDelete);
-        }else{
-          console.error(resultDeleteCities.data.message);
-        } 
-      }else{
-        this.deleteCitiesWService.removeSessionCities(citiesToDelete);
-      }
-     
-    }
-    this.deleteCitiesWService.setCitiesToDelete([]);
-  }
-
-  toggleDeleteMode(){
-    this.deleteCitiesWService.setCitiesToDelete([]);
-    this.deleteCitiesWService.setIsDeleteCitiesW(!this.isDeleteCitiesWModeOn$);
-  }
-
-  ngOnDestroy(): void {
-    console.log("destruiu")
-    // Chama toggleReturnSettings quando o componente for destruído
-    this.toggleDeleteMode();
   }
 }

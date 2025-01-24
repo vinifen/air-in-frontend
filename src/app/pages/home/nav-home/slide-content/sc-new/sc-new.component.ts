@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewChecked, Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../../../shared/services/auth.service';
 import { firstValueFrom } from 'rxjs';
-import { CitiesWeatherService } from '../../../../../shared/services/cities-weather.service';
 import { CitiesWSessionHandlerService } from '../../../../../shared/services/cities-w-session-handler.service';
+import { TitleContentService } from '../../title-content.service';
 
 @Component({
   selector: 'app-sc-new',
@@ -13,21 +13,25 @@ import { CitiesWSessionHandlerService } from '../../../../../shared/services/cit
   templateUrl: './sc-new.component.html',
   styleUrls: ['./sc-new.component.css']
 })
-export class ScNewComponent implements AfterViewChecked {
+export class ScNewComponent implements OnInit {
   @ViewChild('newInput') searchInput!: ElementRef;
   inputNewCity: string = "";
   errorMessage = "";
   successMessage = "";
 
   constructor(
-    private citiesWeatherService: CitiesWeatherService, 
+    private titleContentServe: TitleContentService,
     private authService: AuthService,
     private citiesWHandler: CitiesWSessionHandlerService
   ) {}
 
+  ngOnInit(): void {
+    this.titleContentServe.setTitleContent("Add new City")
+  }
+
   async onSubmit() {
-    this.errorMessage = ""; // Limpa mensagens anteriores
-    this.successMessage = ""; // Limpa mensagens anteriores
+    this.errorMessage = ""; 
+    this.successMessage = ""; 
   
     if (!this.inputNewCity.trim()) {
       this.errorMessage = "City name cannot be empty.";
@@ -71,10 +75,4 @@ export class ScNewComponent implements AfterViewChecked {
     }
   }
   
-
-  ngAfterViewChecked(): void {
-    if (this.searchInput?.nativeElement) {
-      this.searchInput.nativeElement.focus();
-    }
-  }
 }
