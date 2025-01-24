@@ -36,7 +36,7 @@
         'block': activeSlide$ !== 'new' && activeSlide$ !== 'account' && activeSlide$ !== 'search-bar'
       }"></app-site-title>      
      
-      <h1 *ngIf="titleContent$ && activeSlide$ === 'account'" class=" text-primary">{{titleContent$}}</h1>
+      <h1 *ngIf="(titleContent$ && activeSlide$ === 'account') || titleContent$ && activeSlide$ === 'new'" class=" text-primary">{{titleContent$}}</h1>
       <h1 *ngIf="activeSlide$ === 'account' && titleContent$ === ''" class=" text-primary">Hello {{userData$?.username}}</h1>
 
       <button 

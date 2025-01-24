@@ -15,15 +15,18 @@
 
 
 <div *ngIf="isAccountSettingsActive" class="w-full h-full">
-  <div class="h-full w-full flex items-center  lg:hidden">
+  
+  <div *ngIf="!isLgScreen" class="h-full w-full flex items-center  lg:hidden">
 
-    <app-account-settings *ngIf="!isLgScreen" (accountSettingsToggled)="toggleAccountSettings($event)" class="w-full h-full flex items-center"></app-account-settings>
+    <app-account-settings (accountSettingsToggled)="toggleAccountSettings($event)" class="w-full h-full flex items-center"></app-account-settings>
+
   </div>
 
-  <div class="hidden lg:h-full lg:w-80 lg:grid lg:grid-rows-6">
+  <div *ngIf="isLgScreen" class="hidden lg:h-full lg:w-80 lg:grid lg:grid-rows-6">
     <div class="row-start-2 row-end-4 flex justify-start items-start">
 
-      <app-account-settings *ngIf="isLgScreen" (accountSettingsToggled)="toggleAccountSettings($event)" class="w-full h-full"></app-account-settings>
+      <app-account-settings (accountSettingsToggled)="toggleAccountSettings($event)" class="w-full h-full"></app-account-settings>
+      
     </div>
   </div>
 </div>
