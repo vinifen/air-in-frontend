@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule, LoginComponent, RegisterComponent],
   templateUrl: './main-auth.component.html',
-  styleUrl: './main-auth.component.css'
+  // styleUrl: './main-auth.component.css'
 })
 export class MainAuthComponent implements OnInit {
   activeContent: string | null = null;

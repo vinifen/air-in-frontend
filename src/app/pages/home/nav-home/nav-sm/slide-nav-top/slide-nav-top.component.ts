@@ -9,7 +9,7 @@ import { ScNewComponent } from '../../slide-content/sc-new/sc-new.component';
   standalone: true,
   imports: [ScAccountComponent, ScNewComponent, NgComponentOutlet],
   templateUrl: './slide-nav-top.component.html',
-  styleUrl: './slide-nav-top.component.css'
+  // styleUrl: './slide-nav-top.component.css'
 })
 export class SlideNavTopComponent {
  @Input() activeSlide$: string | null = null;

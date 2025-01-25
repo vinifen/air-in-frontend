@@ -19,7 +19,7 @@ import { NgComponentOutlet, CommonModule } from '@angular/common';
     CommonModule,
   ],
   templateUrl: './slide-sidenav.component.html',
-  styleUrl: './slide-sidenav.component.css'
+  // styleUrl: './slide-sidenav.component.css'
 })
 export class SlideSidenavComponent {
   @Input() activeSlide: string | null = null;

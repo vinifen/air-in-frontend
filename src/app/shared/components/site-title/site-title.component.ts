@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './site-title.component.html',
-  styleUrl: './site-title.component.css'
+  // styleUrl: './site-title.component.css'
 })
 export class SiteTitleComponent {
 

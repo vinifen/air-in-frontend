@@ -9,7 +9,7 @@ import { SlideNavBottomComponent } from '../slide-nav-bottom/slide-nav-bottom.co
   standalone: true,
   imports: [SiteTitleComponent, SlideNavBottomComponent, CommonModule],
   templateUrl: './nav-bottom-home-sm.component.html',
-  styleUrl: './nav-bottom-home-sm.component.css'
+  // styleUrl: './nav-bottom-home-sm.component.css'
 })
 export class NavBottomHomeSmComponent implements OnInit {
   @Output() activeSlideChange = new EventEmitter<string | null>();

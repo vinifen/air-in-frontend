@@ -11,7 +11,7 @@ import { AuthService } from '../../../../../shared/services/auth.service';
   standalone: true,
   imports: [RouterLink, SlideSidenavComponent, SiteTitleComponent, CommonModule],
   templateUrl: './sidenav-home-lg.component.html',
-  styleUrl: './sidenav-home-lg.component.css'
+  // styleUrl: './sidenav-home-lg.component.css'
 })
 export class SidenavHomeLgComponent implements OnInit {
   @Output() activeSlideChange = new EventEmitter<string | null>();

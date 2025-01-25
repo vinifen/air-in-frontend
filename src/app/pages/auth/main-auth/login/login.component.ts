@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  // styleUrl: './login.component.css'
 })
 export class LoginComponent {
   errorMessage: string | null = null;

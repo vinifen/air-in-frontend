@@ -10,7 +10,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
   standalone: true,
   imports: [CommonModule, AccountSettingsComponent, AccountMainComponent],
   templateUrl: './sc-account.component.html',
-  styleUrl: './sc-account.component.css'
+  // styleUrl: './sc-account.component.css'
 })
 export class ScAccountComponent implements OnInit{
   isAccountSettingsActive: boolean = false;

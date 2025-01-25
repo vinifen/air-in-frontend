@@ -10,7 +10,7 @@ import { firstValueFrom } from 'rxjs';
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './account-delete-user.component.html',
-  styleUrl: './account-delete-user.component.css'
+  // styleUrl: './account-delete-user.component.css'
 })
 export class AccountDeleteUserComponent {
   inputPassword = '';

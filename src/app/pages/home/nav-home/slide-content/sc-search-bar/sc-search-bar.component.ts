@@ -9,7 +9,7 @@ import { SearchCitiesService } from '../../../search-cities.service';
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './sc-search-bar.component.html',
-  styleUrl: './sc-search-bar.component.css'
+  // styleUrl: './sc-search-bar.component.css'
 })
 export class ScSearchBarComponent implements OnInit {
   inputValue: string = '';
