@@ -13,7 +13,6 @@
       <label for="username">
         <h3><p class="text-xs text-start ml-3 text-gray-700">Username</p></h3>
         <input 
-          #username 
           [(ngModel)]="inputUsername"
           name="username"
           id="username" 
@@ -24,7 +23,6 @@
       <label for="password">
         <h3><p class="text-xs text-start ml-3 text-gray-700">Password</p></h3>
         <input 
-          #password 
           [(ngModel)]="inputPassword"
           name="password"
           id="password" 
@@ -33,7 +31,12 @@
       </label>
 
       <label for="remember-me" class="flex items-center ml-2">
-        <input id="remember-me" type="checkbox" class="mr-2">
+        <input 
+          [(ngModel)]="inputRememberMe"
+          name="remember-me"
+          id="remember-me" 
+          type="checkbox" 
+          class="mr-2">
         <p class="text-xs text-gray-700">Remember-me</p>
       </label>
 

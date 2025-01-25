@@ -32,9 +32,9 @@ export class UsersService {
     return this.userData$.asObservable();
   }
 
-  requestPostUsers(username: string, password: string): Observable<any> {
+  requestPostUsers(username: string, password: string, rememberMe: boolean): Observable<any> {
     const data = this.http.post(
-      `${this.apiURL}users`, {username, password}, { withCredentials: true } 
+      `${this.apiURL}users`, {username, password, rememberMe}, { withCredentials: true } 
     ).pipe(take(1));
     return data;
   }

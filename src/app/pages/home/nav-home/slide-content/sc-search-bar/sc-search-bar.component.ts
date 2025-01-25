@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { SearchBarNavValueService } from '../../search-bar-nav-value.service';
 import { OnInit } from '@angular/core';
+import { SearchCitiesService } from '../../../search-cities.service';
 
 @Component({
   selector: 'app-sc-search-bar',
@@ -13,37 +13,15 @@ import { OnInit } from '@angular/core';
 })
 export class ScSearchBarComponent implements OnInit {
   inputValue: string = '';
-  formResult: string = 'Result here';
-  inputValidation: boolean = false;
-  isSubmit: boolean = false;
-  searchValue$: SearchBarNavValueService;
 
-  constructor(service: SearchBarNavValueService){
-    this.searchValue$ = service;
-  }
+  constructor(private searchCitiesService: SearchCitiesService) {}
 
-  ngOnInit() {
-    this.searchValue$.getSearchValue().subscribe({
-      next: (value) => {
-        this.inputValue = value;
-      }
-    });
-  }
+  ngOnInit(): void {}
 
-  saveInputValue(value: string) {
-    if(this.inputValue.match(/^[^/*-_]+$/)){
-      this.inputValidation = true;
-    }
-    this.searchValue$.setSearchValue(value);
-  }
+  sendInput(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const value = inputElement.value;
 
-  onSubmit(){
-    this.isSubmit = true;
-    this.formResult = this.inputValue;
-    localStorage.setItem('searchInput', this.inputValue);
-
-    setTimeout(() => {
-      this.isSubmit = false; 
-    }, 2000);
+    this.searchCitiesService.setCitiesSearched(value);
   }
 }
