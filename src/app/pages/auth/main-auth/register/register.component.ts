@@ -1,5 +1,4 @@
-import { Component, input } from '@angular/core';
-import { AuthService } from '../../../../shared/services/auth.service';
+import { Component } from '@angular/core';
 import { UserSessionHandlerService } from '../../../../shared/services/user-session-handler.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

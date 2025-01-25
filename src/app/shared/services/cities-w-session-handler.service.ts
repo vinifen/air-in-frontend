@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, firstValueFrom } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import ICitiesData from '../interfaces/ICitiesData';
 import { AuthService } from './auth.service';
 import { CitiesWeatherService } from './cities-weather.service';
-import { UserSessionHandlerService } from './user-session-handler.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CitiesWSessionHandlerService {
-  private citiesLoading = new BehaviorSubject<boolean>(true);
   constructor(
     private authService: AuthService, 
     private citiesWeatherService: CitiesWeatherService, 
-    private userSessionHandlerS: UserSessionHandlerService
   ) {}
 
 

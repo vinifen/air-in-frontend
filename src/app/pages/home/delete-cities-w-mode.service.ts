@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { CitiesWeatherService } from '../../shared/services/cities-weather.service';
 import ICitiesData from '../../shared/interfaces/ICitiesData';

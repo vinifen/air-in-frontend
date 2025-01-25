@@ -55,26 +55,4 @@ export class CitiesWeatherService {
     
     return data;
   }
-
-  // requestPostCitiesWeather(cityNames: string[]) {
-  //   return this.userService.getUserData().pipe(
-  //     take(1),
-  //     switchMap(userData => {
-  //       if (!userData) {
-  //         return EMPTY;
-  //       }
-  //       const body = { userID: userData.userID, cities: cityNames };
-  //       return this.http.post(`${this.apiURL}cities/weather`, body, {withCredentials: true}).pipe(take(1));
-  //     })
-  //   );
-  // }
-
-  // requestCitiesWeatherData() {
-  //   return this.http.get(`${this.apiURL}cities/weather`, {withCredentials: true}).pipe(take(1));
-  // }
-
-  // //talvez eu nao use
-  // requestCitiesWeatherDataByCityId(cityId: number) {
-  //   return this.http.get(`${this.apiURL}cities/${cityId}/weather`, {withCredentials: true}).pipe(take(1));
-  // }
 }

@@ -1,13 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DeleteCitiesWModeService } from '../../../delete-cities-w-mode.service';
-import { AuthService } from '../../../../../shared/services/auth.service';
-import { firstValueFrom } from 'rxjs';
-import { CitiesWeatherService } from '../../../../../shared/services/cities-weather.service';
 import { DeleteCitiesComponent } from './delete-cities/delete-cities.component';
 import { SettingsMainComponent } from './settings-main/settings-main.component';
-import { TitleContentService } from '../../title-content.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
