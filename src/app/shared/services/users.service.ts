@@ -8,7 +8,6 @@ import IUserData from '../interfaces/IUserData';
   providedIn: 'root'
 })
 export class UsersService {
-  private result: any;
   private apiURL: string = environment.backendURL;
   private userData$: BehaviorSubject<IUserData | null> = new BehaviorSubject<IUserData | null>(null);
 

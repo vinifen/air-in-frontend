@@ -1,14 +1,10 @@
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../shared/services/auth.service';
 import { CitiesWSessionHandlerService } from '../../../shared/services/cities-w-session-handler.service';
-import { firstValueFrom } from 'rxjs';
-import { CitiesWeatherService } from '../../../shared/services/cities-weather.service';
 import { ActiveSlideNavService } from '../nav-home/active-slide-nav.service';
 import { DeleteCitiesWModeService } from '../delete-cities-w-mode.service';
-import ICitiesData from '../../../shared/interfaces/ICitiesData';
 import { InitializeService } from '../../../shared/services/initialize.service';
-import { SearchCitiesService } from '../search-cities.service';
 import { CitiesWCardsComponent } from './cities-w-cards/cities-w-cards.component';
 
 
@@ -34,7 +30,6 @@ export class MainHomeComponent implements OnInit{
     private authService: AuthService, 
     private activeSlideService: ActiveSlideNavService,
     private citiesWHandler: CitiesWSessionHandlerService, 
-    private citiesWeatherService: CitiesWeatherService,
     private deleteCitiesWService: DeleteCitiesWModeService,
     private initializeService: InitializeService,
 

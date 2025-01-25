@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { SiteTitleComponent } from '../../../../../shared/components/site-title/site-title.component';
 import { ActiveSlideNavService } from '../../active-slide-nav.service';
 import { CommonModule } from '@angular/common';
@@ -10,7 +10,6 @@ import { AuthService } from '../../../../../shared/services/auth.service';
 import { SlideNavTopComponent } from '../slide-nav-top/slide-nav-top.component';
 import { TitleContentService } from '../../title-content.service';
 import { UsersService } from '../../../../../shared/services/users.service';
-import { firstValueFrom } from 'rxjs';
 import IUserData from '../../../../../shared/interfaces/IUserData';
 
 @Component({
