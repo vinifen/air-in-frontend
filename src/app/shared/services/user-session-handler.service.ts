@@ -53,9 +53,9 @@ export class UserSessionHandlerService {
   }
 
 
-  async registerUserSession(username: string, password: string) {
+  async registerUserSession(username: string, password: string, rememberMe: boolean) {
     return new Promise<{status: boolean, message: string}>((resolve, reject) => {
-      this.userService.requestPostUsers(username, password).subscribe({
+      this.userService.requestPostUsers(username, password, rememberMe).subscribe({
         next: (value) => {
           console.log(value, "TESTE LOGIN")
           if(value.status == true){
@@ -81,9 +81,9 @@ export class UserSessionHandlerService {
     });
   }
 
-  async loginUserSesion(username: string, password: string) {
+  async loginUserSesion(username: string, password: string, rememberMe: boolean) {
     return new Promise<{status: boolean, message: string}>((resolve, reject) => {
-      this.authService.requestLogin(username, password).subscribe({
+      this.authService.requestLogin(username, password, rememberMe).subscribe({
         next: (value) => {
           if(value.status == true){
             this.authService.setIsLogged(true);

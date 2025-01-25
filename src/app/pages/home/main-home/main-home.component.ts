@@ -8,13 +8,15 @@ import { ActiveSlideNavService } from '../nav-home/active-slide-nav.service';
 import { DeleteCitiesWModeService } from '../delete-cities-w-mode.service';
 import ICitiesData from '../../../shared/interfaces/ICitiesData';
 import { InitializeService } from '../../../shared/services/initialize.service';
+import { SearchCitiesService } from '../search-cities.service';
+import { CitiesWCardsComponent } from './cities-w-cards/cities-w-cards.component';
 
 
 
 @Component({
   selector: 'app-main-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CitiesWCardsComponent],
   templateUrl: './main-home.component.html',
   styleUrls: ['./main-home.component.css'] 
 })
@@ -26,6 +28,7 @@ export class MainHomeComponent implements OnInit{
   isDeleteCitiesWModeOn$: boolean = false;
   citiesToDelete: string[] = [];
   isInitialized$: boolean = false;
+  citiesSearched: string[] = [];
 
   constructor(
     private authService: AuthService, 
@@ -33,10 +36,18 @@ export class MainHomeComponent implements OnInit{
     private citiesWHandler: CitiesWSessionHandlerService, 
     private citiesWeatherService: CitiesWeatherService,
     private deleteCitiesWService: DeleteCitiesWModeService,
-    private initializeService: InitializeService
+    private initializeService: InitializeService,
+
   ) {}
 
   async ngOnInit(){
+    this.initializeService.getIsInitialized().subscribe({
+      next: (value) => {
+        this.isInitialized$ = value;
+        console.log(this.isInitialized$, "IS INITIALIZED MAIN HOME")
+      }
+    });
+
     this.activeSlideService.getActiveSlide().subscribe({
       next: (value)=>{
         this.activeSlide$ = value;
@@ -52,42 +63,15 @@ export class MainHomeComponent implements OnInit{
 
     this.citiesWHandler.checkCities();
 
-    this.citiesWeatherService.getCitiesData().subscribe({
-      next: (value) => {
-        this.weatherData$ = value;
-        console.log(this.weatherData$, "WEATHER DATA MAIN-HOME");
-      }
-    });
-
-    
-    this.deleteCitiesWService.getIsDeleteCitiesW().subscribe({
-      next: (value) => {
-        this.isDeleteCitiesWModeOn$ = value;
-      }
-    })
-
-    this.initializeService.getIsInitialized().subscribe({
-      next: (value) => {
-        this.isInitialized$ = value;
-        console.log(this.isInitialized$, "IS INITIALIZED MAIN HOME")
-      }
-    })
 
     this.deleteCitiesWService.getCitiesToDelete().subscribe({
       next: (value) => {this.citiesToDelete = value}
-    })
+    });
+
   }
 
-
-  selectCitiesToDelete(cityName: string) {
-    if (!this.citiesToDelete.includes(cityName)) {
-      this.citiesToDelete.push(cityName);
-      this.deleteCitiesWService.setCitiesToDelete(this.citiesToDelete);
-    }else{
-      console.log(this.citiesToDelete, "ANTES")
-      this.citiesToDelete = this.citiesToDelete.filter(city => cityName !== city)
-      console.log(this.citiesToDelete, "DEPOIS")
-    }
+  setLocalWeatherData(event: any){
+    this.weatherData$ = event;
   }
 
   changeActiveSlideToNew(){

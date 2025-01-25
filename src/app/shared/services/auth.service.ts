@@ -30,9 +30,9 @@ export class AuthService {
     }
   }
 
-  requestLogin(username: string, password: string){
+  requestLogin(username: string, password: string, rememberMe: boolean){
     const data = this.http.post<{status: boolean, data: any}>(
-      `${this.apiURL}auth/login`, {username, password}, {withCredentials: true }
+      `${this.apiURL}auth/login`, {username, password, rememberMe}, {withCredentials: true }
     ).pipe(take(1));
     return data;
   }

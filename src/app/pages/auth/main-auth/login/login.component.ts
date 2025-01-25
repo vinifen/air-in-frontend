@@ -17,6 +17,7 @@ export class LoginComponent {
 
   inputUsername: string = "";
   inputPassword: string = "";
+  inputRememberMe: boolean = true;
 
   constructor(
     private handleUserSession: UserSessionHandlerService,
@@ -54,7 +55,7 @@ export class LoginComponent {
     this.errorMessage = null;
   
     try {
-      const data = await this.handleUserSession.loginUserSesion(this.inputUsername, this.inputPassword);
+      const data = await this.handleUserSession.loginUserSesion(this.inputUsername, this.inputPassword, this.inputRememberMe);
 
       if (data.status) {
         this.successMessage = data.message; 
