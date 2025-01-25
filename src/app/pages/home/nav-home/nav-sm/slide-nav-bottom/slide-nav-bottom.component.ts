@@ -13,7 +13,7 @@ import { ScCreditsComponent } from '../../slide-content/sc-credits/sc-credits.co
     CommonModule,
   ],
   templateUrl: './slide-nav-bottom.component.html',
-  styleUrl: './slide-nav-bottom.component.css'
+  // styleUrl: './slide-nav-bottom.component.css'
 })
 export class SlideNavBottomComponent {
   @Input() activeSlide$: string | null = null;

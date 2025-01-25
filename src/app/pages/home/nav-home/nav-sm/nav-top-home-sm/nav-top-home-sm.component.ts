@@ -18,7 +18,7 @@ import IUserData from '../../../../../shared/interfaces/IUserData';
   standalone: true,
   imports: [RouterLink, SiteTitleComponent, CommonModule, ScSearchBarComponent, ScAccountComponent, ScNewComponent, SlideNavTopComponent],
   templateUrl: './nav-top-home-sm.component.html',
-  styleUrl: './nav-top-home-sm.component.css'
+  // styleUrl: './nav-top-home-sm.component.css'
 })
 export class NavTopHomeSmComponent implements OnInit {
   activeSlide$: string | null = null;

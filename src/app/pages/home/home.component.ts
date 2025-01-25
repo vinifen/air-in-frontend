@@ -12,7 +12,7 @@ import { ActiveSlideNavService } from './nav-home/active-slide-nav.service';
   standalone: true,
   imports: [MainHomeComponent, SidenavHomeLgComponent, NavBottomHomeSmComponent, NavTopHomeSmComponent, CommonModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  // styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit{
   isLgScreen: boolean = false;

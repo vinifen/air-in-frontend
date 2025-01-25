@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './delete-cities.component.html',
-  styleUrl: './delete-cities.component.css'
+  // styleUrl: './delete-cities.component.css'
 })
 export class DeleteCitiesComponent implements OnDestroy{
   @Input() isDeleteCitiesWModeOn$!: boolean;

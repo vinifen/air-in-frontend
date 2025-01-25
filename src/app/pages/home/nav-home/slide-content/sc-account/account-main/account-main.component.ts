@@ -9,7 +9,7 @@ import { UsersService } from '../../../../../../shared/services/users.service';
   standalone: true,
   imports: [],
   templateUrl: './account-main.component.html',
-  styleUrls: ['./account-main.component.css']
+  // styleUrl: './account-main.component.css'
 })
 export class AccountMainComponent implements OnInit {
   userData: IUserData | null = null;

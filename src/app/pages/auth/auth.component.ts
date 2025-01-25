@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule, MainAuthComponent, NavBottomAuthSmComponent, SidenavAuthLgComponent, NavTopAuthSmComponent],
   templateUrl: './auth.component.html',
-  styleUrl: './auth.component.css'
+  // styleUrl: './auth.component.css'
 })
 export class AuthComponent implements OnInit {
   isLgScreen: boolean = false;

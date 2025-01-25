@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './account-edit-pw.component.html',
-  styleUrl: './account-edit-pw.component.css'
+  // styleUrl: './account-edit-pw.component.css'
 })
 export class AccountEditPwComponent {
   inputNewPassword = '';

@@ -9,7 +9,7 @@ import { CitiesWeatherService } from '../../../../shared/services/cities-weather
   standalone: true,
   imports: [CommonModule],
   templateUrl: './cities-w-cards.component.html',
-  styleUrl: './cities-w-cards.component.css'
+  // styleUrl: './cities-w-cards.component.css'
 })
 export class CitiesWCardsComponent implements OnInit {
   @Input() weatherData$!: any;

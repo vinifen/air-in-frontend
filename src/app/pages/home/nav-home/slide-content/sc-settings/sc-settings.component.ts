@@ -15,7 +15,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
   standalone: true,
   imports: [CommonModule, FormsModule, DeleteCitiesComponent, SettingsMainComponent],
   templateUrl: './sc-settings.component.html',
-  styleUrl: './sc-settings.component.css'
+  // styleUrl: './sc-settings.component.css'
 })
 export class ScSettingsComponent implements OnInit{
   isLgScreen: boolean =false;

@@ -9,7 +9,7 @@ import { ActiveContentAuthNavService } from '../../../active-content-auth-nav.se
   standalone: true,
   imports: [RouterLink, CommonModule, SiteTitleComponent],
   templateUrl: './nav-top-auth-sm.component.html',
-  styleUrl: './nav-top-auth-sm.component.css'
+  // styleUrl: './nav-top-auth-sm.component.css'
 })
 export class NavTopAuthSmComponent implements OnInit {
   activeContent: string | null = null;

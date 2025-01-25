@@ -6,7 +6,7 @@ import { DeleteCitiesWModeService } from '../../../../delete-cities-w-mode.servi
   standalone: true,
   imports: [],
   templateUrl: './settings-main.component.html',
-  styleUrl: './settings-main.component.css'
+  // styleUrl: './settings-main.component.css'
 })
 export class SettingsMainComponent {
   @Input() isDeleteCitiesWModeOn$!: boolean;

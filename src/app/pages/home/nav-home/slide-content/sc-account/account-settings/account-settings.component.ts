@@ -10,7 +10,7 @@ import { TitleContentService } from '../../../title-content.service';
   standalone: true,
   imports: [CommonModule, AccountEditUsnmComponent, AccountEditPwComponent, AccountDeleteUserComponent],
   templateUrl: './account-settings.component.html',
-  styleUrl: './account-settings.component.css'
+  // styleUrl: './account-settings.component.css'
 })
 export class AccountSettingsComponent implements OnInit {
   accountSettingsContent = "settings";

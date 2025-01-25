@@ -9,7 +9,7 @@ import { SiteTitleComponent } from '../../../../../shared/components/site-title/
   standalone: true,
   imports: [RouterLink, CommonModule, SiteTitleComponent],
   templateUrl: './nav-bottom-auth-sm.component.html',
-  styleUrl: './nav-bottom-auth-sm.component.css'
+  // styleUrl: './nav-bottom-auth-sm.component.css'
 })
 export class NavBottomAuthSmComponent implements OnInit {
   activeContent: string | null = null;

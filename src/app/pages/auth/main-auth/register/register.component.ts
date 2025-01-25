@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  // styleUrl: './register.component.css'
 })
 export class RegisterComponent {
   errorMessage: string | null = null;

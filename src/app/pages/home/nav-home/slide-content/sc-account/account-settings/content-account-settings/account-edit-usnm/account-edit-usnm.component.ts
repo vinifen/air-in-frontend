@@ -10,7 +10,7 @@ import { TitleContentService } from '../../../../../title-content.service';
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './account-edit-usnm.component.html',
-  styleUrl: './account-edit-usnm.component.css'
+  // styleUrl: './account-edit-usnm.component.css'
 })
 export class AccountEditUsnmComponent implements OnInit {
   inputNewUsername = "";

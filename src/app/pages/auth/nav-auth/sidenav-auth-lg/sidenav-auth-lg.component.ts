@@ -8,7 +8,7 @@ import { ActiveContentAuthNavService } from '../../active-content-auth-nav.servi
   standalone: true,
   imports: [RouterLink, CommonModule, SiteTitleComponent],
   templateUrl: './sidenav-auth-lg.component.html',
-  styleUrl: './sidenav-auth-lg.component.css'
+  // styleUrl: './sidenav-auth-lg.component.css'
 })
 export class SidenavAuthLgComponent implements OnInit{
   activeContent: string | null = null;

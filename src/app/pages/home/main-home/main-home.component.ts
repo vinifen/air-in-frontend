@@ -18,7 +18,7 @@ import { CitiesWCardsComponent } from './cities-w-cards/cities-w-cards.component
   standalone: true,
   imports: [CommonModule, CitiesWCardsComponent],
   templateUrl: './main-home.component.html',
-  styleUrls: ['./main-home.component.css'] 
+  // styleUrl: './main-home.component.css' 
 })
 export class MainHomeComponent implements OnInit{
   islogged$: boolean = false;

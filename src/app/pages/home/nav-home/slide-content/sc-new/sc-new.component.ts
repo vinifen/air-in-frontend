@@ -11,7 +11,7 @@ import { TitleContentService } from '../../title-content.service';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './sc-new.component.html',
-  styleUrls: ['./sc-new.component.css']
+  // styleUrl: './sc-new.component.css'
 })
 export class ScNewComponent implements OnInit {
   @ViewChild('newInput') searchInput!: ElementRef;
