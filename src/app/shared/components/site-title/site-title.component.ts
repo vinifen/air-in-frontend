@@ -7,6 +7,4 @@ import { Component } from '@angular/core';
   templateUrl: './site-title.component.html',
   // styleUrl: './site-title.component.css'
 })
-export class SiteTitleComponent {
-
-}
+export class SiteTitleComponent {}

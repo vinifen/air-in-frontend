@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, take, map } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import ICitiesData from '../interfaces/ICitiesData';
-import { UsersService } from './users.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +12,10 @@ export class CitiesWeatherService {
   private apiURL: string = environment.backendURL;
  
 
-  constructor(private http: HttpClient, private userService: UsersService) {}
+  constructor(private http: HttpClient) {}
 
   setCitiesData(newCitiesData: ICitiesData[] | null){
-    console.log(newCitiesData, "NEW CITIES DATA ");
     if(newCitiesData){
-      console.log(newCitiesData, "NEW CITIES DATA TRUE");
       this.citiesData$.next(newCitiesData);
     }else{ 
       this.citiesData$.next(null);

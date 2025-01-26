@@ -23,10 +23,9 @@ export class DeleteCitiesComponent implements OnDestroy{
   async submitDeleteCities(){
     const isLogged = await firstValueFrom (this.authService.getIsLogged());
     const citiesToDelete = await firstValueFrom (this.deleteCitiesWService.getCitiesToDelete());
-    console.log(citiesToDelete, "CITIES TO DELETE SUBMIT")
+    
     if(citiesToDelete.length > 0){
       if(isLogged){
-        console.log(citiesToDelete, "aa");
         const resultDeleteCities = await firstValueFrom(this.citiesWService.deleteCities(citiesToDelete));
         if(resultDeleteCities.status){
           this.deleteCitiesWService.removeSessionCities(citiesToDelete);
@@ -46,7 +45,6 @@ export class DeleteCitiesComponent implements OnDestroy{
   }
 
   ngOnDestroy(): void {
-    console.log("destruiu")
     if(this.isDeleteCitiesWModeOn$){
      this.toggleDeleteMode();
     }

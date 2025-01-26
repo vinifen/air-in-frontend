@@ -9,7 +9,6 @@ export class ActiveContentAuthNavService {
 
   setActiveContent(content: string | null){
     this.activeContent$.next(content);
-    console.log(this.activeContent$, content);
   }
 
   getActiveContent(){

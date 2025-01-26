@@ -20,11 +20,10 @@ export class AccountSettingsComponent implements OnInit {
   constructor(private titleContentService: TitleContentService){}
 
   ngOnInit(): void {
-    console.log("INICIO SETTINGS");
     this.titleContentService.setTitleContent("Account Settings");
   }
 
-
+  
   toggleAccountSettingsContent(value: string){
     this.accountSettingsContent = value;
   }

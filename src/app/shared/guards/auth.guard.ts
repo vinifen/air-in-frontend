@@ -12,11 +12,11 @@ export const authGuard: CanActivateFn = async (route, state) => {
   const router = inject(Router);
   
   const isInitialized = await firstValueFrom(initializeService.getIsInitialized());
-console.log("RODOU AUTH GUARD", isInitialized);
+
   if (!isInitialized) {
    
     const checkUser = await userSession.checkUserSession();
-    console.log(checkUser, "RODOU QUANDO NAO ESTIVER INICIALIZADO");
+    
     if (!checkUser.stStatus) {
       return true; 
     }
@@ -25,9 +25,7 @@ console.log("RODOU AUTH GUARD", isInitialized);
 
   const isLogged = await firstValueFrom(authService.getIsLogged());
   if (!isLogged) {
-    console.log("ROUDOU QUANDO ESTIVER INICIALIZADO");
     return true; 
   }
-console.log("ROUDOU QUANDO ESTIVER INICIALIZADO");
   return false; 
 };

@@ -10,7 +10,6 @@ export class SearchCitiesService {
 
   setCitiesSearched(cities: string){
     this.citiesSearched$.next(cities);
-    console.log(this.citiesSearched$);
   }
 
   getCitiesSearched(){

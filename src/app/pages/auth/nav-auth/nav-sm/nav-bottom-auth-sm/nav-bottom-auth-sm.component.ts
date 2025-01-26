@@ -13,7 +13,7 @@ import { SiteTitleComponent } from '../../../../../shared/components/site-title/
 })
 export class NavBottomAuthSmComponent implements OnInit {
   activeContent: string | null = null;
-
+  
   constructor(private activeContentService$: ActiveContentAuthNavService){}
 
   ngOnInit(): void {

@@ -9,7 +9,6 @@ export class ActiveSlideNavService {
 
   setActiveSlide(content: string | null){
     this.activeSlide$.next(content);
-    console.log(this.activeSlide$, content);
   }
 
   getActiveSlide(){

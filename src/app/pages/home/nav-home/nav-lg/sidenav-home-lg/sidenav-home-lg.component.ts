@@ -33,7 +33,6 @@ export class SidenavHomeLgComponent implements OnInit {
 
   toggleSlide(newContent: string): void {
     this.authService.getIsLogged().subscribe({next: (value: boolean) => {
-      console.log(value);
       if(value == false && newContent === "account"){
         return
       }

@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit{
   constructor(private breakpointObserver: BreakpointObserver, private activeSlide: ActiveSlideNavService) {}
 
   ngOnInit(): void {
-    console.log( "RODOU HOME PAGE");
     this.activeSlide.setActiveSlide('');
     this.breakpointObserver.observe(['(min-width: 1024px)']).subscribe((result) => {
       this.isLgScreen = result.matches;

@@ -34,11 +34,9 @@ export class NavTopHomeSmComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    console.log("INICIOU NAV TOP");
     
     this.activeSlideService$.getActiveSlide().subscribe((content) => {
       this.activeSlide$ = content;
-      console.log(this.activeSlide$, "TOGLE SLIDE");
       this.activeSlideChange.emit(this.activeSlide$);
     });
   
@@ -46,14 +44,12 @@ export class NavTopHomeSmComponent implements OnInit {
       next: (title) => {
         setTimeout(() => {
           this.titleContent$ = title;
-          console.log(this.titleContent$, "TITLE CONTENT");
         });
       }
     });
     this.userService.getUserData().subscribe({
       next: (value) => {
         this.userData$ = value;
-        console.log("userdata", this.userData$);
       }
     });
     

@@ -25,7 +25,6 @@ export class InitializeService {
   async startApp(){
     await this.handleUserSession.checkUserSession();
     await this.handlerCitiesWeatherSession.checkCities();
-    console.log("AQUI START APP")
     
     this.setIsInitialized(true);
   }

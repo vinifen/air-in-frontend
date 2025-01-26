@@ -13,11 +13,9 @@ import { ScNewComponent } from '../../slide-content/sc-new/sc-new.component';
 })
 export class SlideNavTopComponent {
  @Input() activeSlide$: string | null = null;
-  constructor(){
-    console.log(this.activeSlide$);
-  }
-  
 
+  constructor(){}
+  
   getComponent(){
    if(this.activeSlide$ === "account"){
     return ScAccountComponent;

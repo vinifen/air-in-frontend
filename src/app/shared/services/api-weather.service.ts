@@ -14,7 +14,6 @@ export class ApiWeatherService {
 
   getWeather(cities: string[]): Observable<any>{
     const data = this.http.post(`${this.apiURL}cities-weather/public`, cities).pipe(take(1));
-    console.log(data);
     return data;
   }
 }

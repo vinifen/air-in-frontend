@@ -44,7 +44,6 @@ export class AccountEditPwComponent {
   }
 
   ngOnInit(): void {
-    console.log('INICIO EDIT PASSWORD');
     this.titleContentService.setTitleContent('New Password');
   }
 

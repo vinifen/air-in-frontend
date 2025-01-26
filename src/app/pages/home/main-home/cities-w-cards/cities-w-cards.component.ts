@@ -26,7 +26,7 @@ export class CitiesWCardsComponent implements OnInit {
     private serchCitiesService: SearchCitiesService,
     private citiesWeatherService: CitiesWeatherService,
   ){}
-
+  
   ngOnInit(): void {
     this.serchCitiesService.getCitiesSearched().subscribe({
       next: (prompt) => {
@@ -36,7 +36,6 @@ export class CitiesWCardsComponent implements OnInit {
           );
           this.renderCardsData = this.citiesSearched$;
         }else{
-        console.log("SERACH VAZIO")
           this.renderCardsData = this.weatherData$;
         }
         
@@ -54,7 +53,6 @@ export class CitiesWCardsComponent implements OnInit {
         this.emitWeatherData$.emit(value);
         this.weatherData$ = value;
         this.renderCardsData = this.weatherData$;
-        console.log(this.weatherData$, "WEATHER DATA MAIN-HOME");
       }
     });
   }
@@ -65,9 +63,7 @@ export class CitiesWCardsComponent implements OnInit {
       this.citiesToDelete.push(cityName);
       this.deleteCitiesWService.setCitiesToDelete(this.citiesToDelete);
     }else{
-      console.log(this.citiesToDelete, "ANTES")
-      this.citiesToDelete = this.citiesToDelete.filter(city => cityName !== city)
-      console.log(this.citiesToDelete, "DEPOIS")
+      this.citiesToDelete = this.citiesToDelete.filter(city => cityName !== city);
     }
   }
 }
