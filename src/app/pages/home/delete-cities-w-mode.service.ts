@@ -14,7 +14,6 @@ export class DeleteCitiesWModeService {
 
   setCitiesToDelete(cities: string []){
     this.citiesToDelete.next(cities);
-    console.log(this.citiesToDelete);
   }
 
   getCitiesToDelete(){
@@ -27,7 +26,6 @@ export class DeleteCitiesWModeService {
       const newWeatherData = this.weatherData.filter((cityWeather: ICitiesData) => 
         !citiesRemoved.includes(cityWeather.city)
       );
-      console.log(newWeatherData, "NEW WEATHER DATA");
       this.citiesWService.setCitiesData(newWeatherData);
     }
   }

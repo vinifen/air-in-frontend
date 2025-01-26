@@ -29,19 +29,15 @@ export class AccountMainComponent implements OnInit {
 
   async toggleLogout() {
     const isLogged = await firstValueFrom(this.authService.getIsLogged());
-    console.log(isLogged);
+   
     if (isLogged) {
       const result = await firstValueFrom(this.authService.requestLogout());
-      console.log(result, "RESULTADO LOGOUT");
       window.location.reload();
     }
   }
 
   async toggleAccountSettings() {
     this.isAccountSettingsActive = !this.isAccountSettingsActive;
-    console.log("AccountSettings", this.isAccountSettingsActive);
-
-
     this.accountSettingsToggled.emit(this.isAccountSettingsActive);
   }
 }

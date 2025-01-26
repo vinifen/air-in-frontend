@@ -23,9 +23,9 @@ import { NgComponentOutlet, CommonModule } from '@angular/common';
 })
 export class SlideSidenavComponent {
   @Input() activeSlide: string | null = null;
-  constructor(){
-    console.log(this.activeSlide);
-  }
+  
+  constructor(){}
+
   getComponent(){
     switch(this.activeSlide){
       case 'account':

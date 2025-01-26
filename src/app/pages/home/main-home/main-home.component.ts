@@ -39,14 +39,12 @@ export class MainHomeComponent implements OnInit{
     this.initializeService.getIsInitialized().subscribe({
       next: (value) => {
         this.isInitialized$ = value;
-        console.log(this.isInitialized$, "IS INITIALIZED MAIN HOME")
       }
     });
 
     this.activeSlideService.getActiveSlide().subscribe({
       next: (value)=>{
         this.activeSlide$ = value;
-        console.log(this.activeSlide$, "ACTIVESLIDE$ VALUE em main-home")
       } 
     });
 

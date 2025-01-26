@@ -5,7 +5,6 @@ import { UserSessionHandlerService } from '../services/user-session-handler.serv
 import { NgxSpinnerService } from 'ngx-spinner';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  console.log('INTERCEPTOR ACTIVATED');
   const publicRoutes = [
     { url: '/authentication', methods: ['POST', 'GET'] },
     { url: '/cities-weather/public', methods: ['POST'] },
@@ -18,7 +17,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   );
 
   if (isPublicRoute) {
-    console.log('Public route detected, skipping verification:', req.url);
     return next(req);
   }
 
@@ -28,23 +26,20 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const userSessionHandler = inject(UserSessionHandlerService);
 
   return next(req).pipe(
-    tap((response: any) => {
-      console.log('Response received:', response);
-    }),
     switchMap((response: any) => {
       const responseBody = response.body;
 
       if (responseBody?.status === false && responseBody.data?.stStatus === false && responseBody.data?.hasRt === true) {
-        console.log('Token inválido ou expirado, tentando renovar...');
 
         return from(userSessionHandler.handlerErrorRequest(responseBody)).pipe(
           switchMap((resultAuth: any) => {
             if (resultAuth.status === true && resultAuth.newSession === true) {
+
               const requestAgain = req.clone();
-              console.log('Token renovado, reenviando requisição:', requestAgain);
               return next(requestAgain);
             } else {
-              console.error('Sessão expirada ou erro ao renovar o token');
+
+              console.error('Session expired or token renewal failed');
               return throwError(() => new Error('Session expired or token renewal failed'));
             }
           })
@@ -60,4 +55,5 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       spinner.hide();
     })
   );
+  
 };

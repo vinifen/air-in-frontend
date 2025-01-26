@@ -35,41 +35,34 @@ export class ScNewComponent implements OnInit {
   
     if (!this.inputNewCity.trim()) {
       this.errorMessage = "City name cannot be empty.";
-      console.log("City name is empty");
       return;
     }
   
     const cityArray = [this.inputNewCity.trim()];
-    console.log("submit city", cityArray);
   
     try {
       const isLogged = await firstValueFrom(this.authService.getIsLogged());
-      console.log("User logged in:", isLogged);
   
       if (isLogged) {
         const resultPost = await this.citiesWHandler.postCitiesWeather(cityArray);
   
         if (resultPost.status) {
           this.successMessage = "City added successfully!";
-          console.log("City added successfully:", resultPost.message);
         } else {
           this.errorMessage = resultPost.message || "Failed to add the city.";
-          console.error("Error adding city:", resultPost.message);
         }
+
       } else {
         const resultPostPublic = await this.citiesWHandler.postCitiesWeatherPublic(cityArray);
   
         if (resultPostPublic.status) {
           this.successMessage = resultPostPublic.message || "City added successfully (public mode)!";
-          console.log("City added successfully (public):", resultPostPublic.message);
         } else {
           this.errorMessage = resultPostPublic.message || "Failed to add the city (public).";
-          console.error("Error adding city (public):", resultPostPublic.message);
         }
       }
     } catch (error: any) {
       this.errorMessage = error.message || "An unexpected error occurred. Please try again.";
-      console.error("Unexpected error:", error);
     } finally {
       this.inputNewCity = ""; 
     }

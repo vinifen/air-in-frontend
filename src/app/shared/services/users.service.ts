@@ -19,7 +19,6 @@ export class UsersService {
   }
 
   setUserData(newUserData: IUserData | null){
-    console.log(newUserData, "NEW USER DATA")
     if(!newUserData){
       this.userData$.next(null);
     }else{ 
@@ -49,7 +48,7 @@ export class UsersService {
     
     return data;
   }
-
+  
   requestEditUsername(newUsername: string, password: string){
     const data = this.http.put<{ status: boolean; data: any }>(
       `${this.apiURL}users/username`, {newUsername, password}, { withCredentials: true } 

@@ -34,21 +34,17 @@ export class RegisterComponent {
     this.errorMessage = !this.isFormValid && this.inputPassword !== this.inputPasswordConfirm ? 'Passwords do not match.' : '';
 
     if (!usernameRegex.test(this.inputUsername)) {
-      this.errorMessage = "Username must be between 2 and 30 characters and contain only letters and numbers.";
-    }
 
-    else if (!passwordRegex.test(this.inputPassword) || !passwordRegex.test(this.inputPasswordConfirm)) {
+      this.errorMessage = "Username must be between 2 and 30 characters and contain only letters and numbers.";
+    }else if (!passwordRegex.test(this.inputPassword) || !passwordRegex.test(this.inputPasswordConfirm)) {
+
       this.errorMessage = "Password must be between 4 and 90 characters, with at least one uppercase letter and one number.";
-    }
-    
-    else {
+      
+    }else {
       this.errorMessage = null;
     }
 
-
     this.isFormValid = !this.errorMessage;
-
-    console.log(this.isFormValid);
   }
   
   async onSubmit() {

@@ -28,6 +28,4 @@ export class ScAccountComponent implements OnInit{
   toggleAccountSettings(event: boolean){
     this.isAccountSettingsActive = event;
   }
-
-
 }

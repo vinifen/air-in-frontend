@@ -43,7 +43,6 @@ export class AccountEditUsnmComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("INICIO EDIT USERNAME");
     this.titleContentService.setTitleContent("New Username");
   }
 

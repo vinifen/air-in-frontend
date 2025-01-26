@@ -33,8 +33,6 @@ export class CitiesWSessionHandlerService {
       this.citiesWeatherService.requestPostCitiesWeather(cities).subscribe({
         next: async (newCities: any) => {
           try {
-            console.log(newCities, "NOVAS CIDADES POSTADAS");
-  
             const filteredNewCities = await this.removeInvalidCitiesW(newCities.data);
   
             if (filteredNewCities.status && filteredNewCities.data) {
@@ -65,12 +63,9 @@ export class CitiesWSessionHandlerService {
   
   postCitiesWeatherPublic(cities: string[]): Promise<{ status: boolean; message: string }> {
     return new Promise((resolve, reject) => {
-      console.log("DESLOGADO CITIES");
       this.citiesWeatherService.requestCitiesWeatherPublic(cities).subscribe({
         next: async (newCities: any) => {
           try {
-            console.log(newCities, "NOVAS CIDADES");
-  
             const filteredNewCities = await this.removeInvalidCitiesW(newCities.data);
   
             if (filteredNewCities.status && filteredNewCities.data) {
@@ -101,7 +96,6 @@ export class CitiesWSessionHandlerService {
 
 
   private async removeInvalidCitiesW(cities: ICitiesData[] ){
-    console.log(cities, "remove invalid cities CITY");
     const filteredCities = cities.filter(cities => !!cities.status);
 
     if(filteredCities.length == 0){
