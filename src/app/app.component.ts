@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { UsersService } from './shared/services/users.service';
-import { AuthService } from './shared/services/auth.service';
-import { CitiesWeatherService } from './shared/services/cities-weather.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { InitializeService } from './shared/services/initialize.service';
 
