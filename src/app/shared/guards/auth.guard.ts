@@ -6,26 +6,27 @@ import { UserSessionHandlerService } from '../services/user-session-handler.serv
 import { InitializeService } from '../services/initialize.service';
 
 export const authGuard: CanActivateFn = async (route, state) => {
-  const authService = inject(AuthService);
-  const initializeService = inject(InitializeService)
-  const userSession = inject(UserSessionHandlerService);
-  const router = inject(Router);
+  // const authService = inject(AuthService);
+  // const initializeService = inject(InitializeService)
+  // const userSession = inject(UserSessionHandlerService);
+  // const router = inject(Router);
   
-  const isInitialized = await firstValueFrom(initializeService.getIsInitialized());
+  // const isInitialized = await firstValueFrom(initializeService.getIsInitialized());
 
-  if (!isInitialized) {
+  // if (!isInitialized) {
    
-    const checkUser = await userSession.checkUserSession();
+  //   const checkUser = await userSession.checkUserSession();
     
-    if (!checkUser.stStatus) {
-      return true; 
-    }
-    return router.parseUrl('/'); 
-  }
+  //   if (!checkUser.stStatus) {
+  //     return true; 
+  //   }
+  //   return router.parseUrl('/'); 
+  // }
 
-  const isLogged = await firstValueFrom(authService.getIsLogged());
-  if (!isLogged) {
-    return true; 
-  }
-  return false; 
+  // const isLogged = await firstValueFrom(authService.getIsLogged());
+  // if (!isLogged) {
+  //   return true; 
+  // }
+  // return false; 
+  return true;
 };
