@@ -16,7 +16,7 @@ import { AuthService } from '../../../../../shared/services/auth.service';
 export class SidenavHomeLgComponent implements OnInit {
   @Output() activeSlideChange = new EventEmitter<string | null>();
 
-  activeSlide: string | null = null;
+  activeSlide$: string | null = null;
   
 
   constructor(
@@ -26,8 +26,8 @@ export class SidenavHomeLgComponent implements OnInit {
 
   ngOnInit(): void {
     this.activeSlideService$.getActiveSlide().subscribe((content) =>{
-      this.activeSlide = content;
-      this.activeSlideChange.emit(this.activeSlide); 
+      this.activeSlide$ = content;
+      this.activeSlideChange.emit(this.activeSlide$); 
     })
   }
 
@@ -36,7 +36,7 @@ export class SidenavHomeLgComponent implements OnInit {
       if(value == false && newContent === "account"){
         return
       }
-      this.activeSlideService$.setActiveSlide(this.activeSlide === newContent ? null : newContent);
+      this.activeSlideService$.setActiveSlide(this.activeSlide$ === newContent ? null : newContent);
     }});
   }
 }

@@ -30,3 +30,17 @@ input:focus {
   background-color: #cccccc; 
   border-radius: 10px; 
 }
+
+@media screen and (max-height: 550px) {
+  .sm-h-input {
+    height: 2.25rem !important;
+  }
+
+  .sm-h-login {
+    height: 70% !important;
+  }
+
+  .sm-h-register {
+    height: 88% !important;
+  }
+}

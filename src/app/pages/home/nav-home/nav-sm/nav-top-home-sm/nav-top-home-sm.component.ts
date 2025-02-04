@@ -23,6 +23,7 @@ export class NavTopHomeSmComponent implements OnInit {
   activeSlide$: string | null = null;
   titleContent$: string | null = null;
   userData$: IUserData | null = null;
+  isLogged$: boolean = false;
 
   @Output() activeSlideChange = new EventEmitter<string | null>();
   
@@ -52,12 +53,21 @@ export class NavTopHomeSmComponent implements OnInit {
         this.userData$ = value;
       }
     });
+
+    this.authService.getIsLogged().subscribe({
+      next: (value) => {
+        this.isLogged$ = value;
+      }
+    });
     
   }
 
   toggleSlide(newContent: string): void {
     this.authService.getIsLogged().subscribe({next: (value: boolean) => {
-     
+      if(value == false && newContent === "account"){
+        return
+      }
+      this.titleContentService.setTitleContent('');
       this.activeSlideService$.setActiveSlide(this.activeSlide$ === newContent ? null : newContent);
     }});
   }

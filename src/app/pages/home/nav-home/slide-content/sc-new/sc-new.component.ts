@@ -5,6 +5,7 @@ import { AuthService } from '../../../../../shared/services/auth.service';
 import { firstValueFrom } from 'rxjs';
 import { CitiesWSessionHandlerService } from '../../../../../shared/services/cities-w-session-handler.service';
 import { TitleContentService } from '../../title-content.service';
+import { AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-sc-new',
@@ -13,8 +14,8 @@ import { TitleContentService } from '../../title-content.service';
   templateUrl: './sc-new.component.html',
   // styleUrl: './sc-new.component.css'
 })
-export class ScNewComponent implements OnInit {
-  @ViewChild('newInput') searchInput!: ElementRef;
+export class ScNewComponent implements OnInit{
+
   inputNewCity: string = "";
   errorMessage = "";
   successMessage = "";
