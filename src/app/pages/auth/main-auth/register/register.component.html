@@ -1,14 +1,14 @@
 <div class="w-full h-full flex justify-center ">
 
-  <div class="w-15/16 flex flex-col justify-center items-center mb-28 xxs:w-8/12 sm:w-96">
-    <div class="flex items-end mb-14">
-      <img src="/air-in-logo.png" class="h-14" alt="">
+  <div class="w-15/16 flex flex-col justify-center items-center xxs:w-7/12 sm:w-96 lg:w-2/6 h-full">
+    <div class="flex items-end md:mb-14">
+      <img src="/air-in-logo.png" class="h-10 sm:h-14" alt="">
       <h1 class="text-lg text-gray-700">Register</h1>
     </div>
 
     <form 
       (ngSubmit)="onSubmit()" 
-      class="w-full h-96 flex flex-col justify-around" 
+      class="w-full h-2/4 sm:h-96 flex flex-col justify-around sm-h-register" 
       (input)="validateForm()"
     > 
       <label for="username">
@@ -18,7 +18,7 @@
           name="username"
           id="username" 
           type="text" 
-          class="focus:outline-primary w-full h-12 rounded-2xl bg-gray-50 border-2 border-gray-500 border-opacity-20">
+          class="focus:outline-primary w-full h-10 rounded-2xl bg-gray-50 border-2 border-gray-500 border-opacity-20 sm-h-input sm:h-12">
       </label>
 
       <label for="password">
@@ -28,7 +28,7 @@
           name="password"
           id="password" 
           type="password" 
-          class="focus:outline-primary w-full h-12 rounded-2xl bg-gray-50 border-2 border-gray-500 border-opacity-20">
+          class="focus:outline-primary w-full h-10 rounded-2xl bg-gray-50 border-2 border-gray-500 border-opacity-20 sm-h-input sm:h-12">
       </label>
 
       <label for="confirm password">
@@ -38,7 +38,7 @@
           name="confirmPassword"
           id="confirm password" 
           type="password" 
-          class="focus:outline-primary w-full h-12 rounded-2xl bg-gray-50 border-2 border-gray-500 border-opacity-20">
+          class="focus:outline-primary w-full h-10 rounded-2xl bg-gray-50 border-2 border-gray-500 border-opacity-20 sm-h-input sm:h-12">
       </label>
 
       <label for="remember-me" class="flex items-center ml-2">
@@ -62,7 +62,7 @@
       <button 
         type="submit" 
         [disabled]="!isFormValid" 
-        class="focus:outline-primary w-full h-14 rounded-2xl bg-gray-50 border-2 border-gray-500 border-opacity-20">
+        class="focus:outline-primary w-full h-12 rounded-2xl bg-gray-50 border-2 border-gray-500 border-opacity-20 sm:h-13">
       <p class="text-start text-sm ml-3 text-gray-700">Submit</p></button>
     </form>
   </div>
