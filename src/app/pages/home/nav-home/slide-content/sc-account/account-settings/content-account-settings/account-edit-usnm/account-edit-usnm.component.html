@@ -70,13 +70,13 @@
         [(ngModel)]="inputNewUsername"
         name="newUsername" 
         placeholder="New Username"
-        class="focus:outline-primary rounded-xl mx-3 bg-gray-50 border-2 h-10 mb-2 border-gray-500 border-opacity-20 w-full lg:mx-2 lg:h-9">
+        class="focus:outline-primary rounded-xl mx-3 bg-gray-50 border-2 h-10 mb-2 border-gray-500 border-opacity-20 w-full">
       <input 
         type="password"
         [(ngModel)]="inputPassword" 
         name="password"
         placeholder="Password"
-        class="focus:outline-primary rounded-xl mx-3 bg-gray-50 border-2 h-10 mb-2 border-gray-500 border-opacity-20 w-full lg:mx-2 lg:h-9">
+        class="focus:outline-primary rounded-xl mx-3 bg-gray-50 border-2 h-10 mb-2 border-gray-500 border-opacity-20 w-full">
         <div *ngIf="successMessage" class="text-green-500 text-sm mb-1">
           {{ successMessage }}
         </div>
@@ -87,7 +87,7 @@
       <button 
         type="submit"
         [disabled]="!isFormValid" 
-        class="bg-gray-50 border-2 border-gray-500 border-opacity-20 rounded-xl h-10 mt-1 flex w-full items-center justify-center ">
+        class="bg-gray-50 border-2 border-gray-500 border-opacity-20 rounded-xl h-10 mt-2 flex w-full items-center justify-center ">
         <p class="text-sm text-primary">Submit</p>
       </button>
     </form>
