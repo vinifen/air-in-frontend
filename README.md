@@ -1,27 +1,54 @@
-# AirIn
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.11.
+# Air-in Frontend
+#### v-1.0
 
-## Development server
+Air-in é um aplicativo desenvolvido por Vinicius FN utilizando Angular 18, para pesquisa do clima em qualquer cidade do mundo. Foi criado com o objetivo de aprimorar habilidades no desenvolvimento de software web.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Esse repositório é um dos três criados para o desenvolvimento do projeto, sendo os outros dois:
+- backend: https://github.com/vinifen/air-in-backend
+- docker: https://github.com/vinifen/air-in-docker
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Instalação:
 
-## Build
+Para uma instalação completa e simplificada, recomenda-se utilizar a versão Docker e seguir as instruções do repositório correspondente.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Se preferir instalar cada parte separadamente, comece pelo backend seguindo as instruções de instalação do repositório.
 
-## Running unit tests
+Certifique-se de ter os seguintes itens instalados: 
+- git:  `sudo apt install git-all`
+- node.js: `sudo apt install nodejs` 
+- npm: `sudo apt install npm` 
+- typescript: `npm install -g typescript`
+- angular: `npm install -g @angular/cli`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+#### Clonar repositório:
 
-## Running end-to-end tests
+```repositório
+  git clone https://github.com/vinifen/air-in.git
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+#### Instalar dependências:
 
-## Further help
+```dependências
+  npm install
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+#### Rodar aplicação:
+
+
+```run
+  ng serve
+```
+
+#### Fazer Build:
+
+Caso deseje fazer build do projeto utilize o comando abaixo:
+
+```build
+  ng build
+```
+
+
+
+
