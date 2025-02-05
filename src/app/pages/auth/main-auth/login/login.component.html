@@ -1,6 +1,6 @@
 <div class="w-full h-full flex justify-center ">
   <div class="w-15/16 flex flex-col justify-center items-center xxs:w-7/12 sm:w-96  lg:w-3/6 xl:w-2/6 h-full">
-    <div class="flex items-end md:mb-14">
+    <div class="flex items-end sm-m-0 mb-4 md:mb-14">
       <img src="/air-in-logo.png" class="h-10 sm:h-14" alt="">
       <h1 class="text-lg text-gray-700">Login</h1>
     </div>
@@ -10,7 +10,7 @@
       (input)="validateForm()"
     > 
       
-      <label class="mb-3 sm:m-0" for="username">
+      <label class="mb-4 sm-m-0 sm:m-0" for="username">
         <h3><p class="text-xs text-start ml-3 text-gray-700">Username</p></h3>
         <input 
           [(ngModel)]="inputUsername"
@@ -20,7 +20,7 @@
           class="focus:outline-primary w-full h-10 rounded-2xl sm-h-input bg-gray-50 border-2 border-gray-500 border-opacity-20 sm:h-12">
       </label>
 
-      <label class="mb-2 sm:m-0" for="password">
+      <label class="mb-3 sm-m-0 sm:m-0" for="password">
         <h3><p class="text-xs text-start ml-3 text-gray-700">Password</p></h3>
         <input 
           [(ngModel)]="inputPassword"
@@ -40,11 +40,11 @@
         <p class="text-xs text-gray-700">Remember-me</p>
       </label>
 
-      <div *ngIf="successMessage" class="text-green-500 text-sm mb-2">
+      <div *ngIf="successMessage" class="text-green-500 text-sm sm-m-0 mb-2">
         {{ successMessage }}
       </div>
   
-      <div *ngIf="errorMessage" class="text-red-500 text-sm mb-2">
+      <div *ngIf="errorMessage" class="text-red-500 text-sm sm-m-0 mb-2">
         {{ errorMessage }}
       </div>
       <button 
