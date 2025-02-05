@@ -33,7 +33,7 @@ input:focus {
 
 @media screen and (max-height: 550px) {
   .sm-h-input {
-    height: 2.25rem !important;
+    height: 2rem !important;
   }
 
   .sm-h-login {
