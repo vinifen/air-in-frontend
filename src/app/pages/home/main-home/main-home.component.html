@@ -10,15 +10,15 @@
           class="flex justify-center items-center h-full w-full"
         >
           <div class="bg-white-50 shadow-lg w-3/4 h-5/6 overflow-hidden sm:h-3/4 lg:h-96 lg:w-96 rounded-3xl flex flex-col justify-center items-center p-8">
-            <p class="w-full text-center md:text-lg lg:text-xl font-semibold text-gray-800">
+            <p class="w-full text-center md:text-lg font-bold mb-4 text-primary">
               Welcome! Here you can find out the weather for any city in the world!
             </p>
-            <p class="w-full text-center text-sm md:text-base lg:text-xl text-gray-600">
+            <p class="w-full text-center text-sm md:text-base text-gray-600">
               Start by adding the first city you want to see
             </p>
             <button
               (click)="changeActiveSlideToNew()"
-              class="w-14 h-14 mt-2 md:w-20 md:h-20 border-2 md:border-4 border-primary border-dotted flex items-center justify-center text-4xl text-primary rounded-full transition-transform duration-300 hover:scale-110"
+              class="w-14 h-14 mt-3 md:w-20 md:h-20 border-2 md:border-4 border-primary border-dotted flex items-center justify-center text-4xl text-primary rounded-full transition-transform duration-300 hover:scale-110"
             >
               <i class="bi bi-plus text-primary text-3xl"></i>
             </button>
